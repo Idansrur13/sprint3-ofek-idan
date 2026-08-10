@@ -1,1 +1,42 @@
  /* note index */
+
+ .note-page {
+     padding: 20px;
+ }
+
+ .note-header {
+     padding-top: 10px;
+     flex-direction: column;
+
+     display: flex;
+
+     position: relative;
+     justify-content: center;
+     align-items: center;
+
+ }
+
+ .header-action {
+     display: flex;
+     justify-content: space-evenly;
+
+ }
+
+ .note-search {
+     display: flex;
+
+     flex-direction: column;
+
+     border-radius: 10px;
+     border: 1px solid #c8c8c8;
+     overflow: hidden;
+     padding: 8px;
+ }
+
+ .note-search input {
+     width: 300px;
+     border: 0;
+     outline: 0;
+
+
+ }
