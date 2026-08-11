@@ -5,6 +5,7 @@ export const utilService = {
   getRandomColor,
   padNum,
   getNumericDate,
+  getDayNumericDate,
   getYearName,
   getMonthName,
   getDayName,
@@ -98,7 +99,7 @@ function getRandomColor() {
 
 function getDayName(date, locale) {
   date = new Date(date)
-  return date.toLocaleDateString(locale, { weekday: "long" })
+  return date.toLocaleDateString(locale, { weekday: "short" })
 }
 
 // doesn't work
@@ -123,12 +124,19 @@ function getDayName(date, locale) {
 ///added ---------------------------------------------------
 
 function getNumericDate(date, locale) {
-    date = new Date(date)
-    return date.toLocaleDateString(locale, { 
-        year: 'numeric', 
-        month: '2-digit', 
-        day: '2-digit' 
-    })
+  date = new Date(date)
+  const options = {
+    year: "2-digit",
+    month: "numeric",
+    day: "numeric",
+  }
+
+  return date.toLocaleDateString(locale, options)
+}
+function getDayNumericDate(date, locale) {
+  date = new Date(date)
+  const num = date.toLocaleDateString(locale, date)
+  return num.slice(0, num.indexOf("."))
 }
 
 function getYearName(date, locale) {
@@ -137,11 +145,11 @@ function getYearName(date, locale) {
 }
 
 function getMonthName(date, locale) {
-    date = new Date(date)
-    return date.toLocaleDateString(locale, { month: 'long' }) // "August"
+  date = new Date(date)
+  return date.toLocaleDateString(locale, { month: "long" }) // "August"
 }
 
 function getTimeOfDay(date, locale) {
-    date = new Date(date)
-    return date.toLocaleTimeString(locale, { hour: 'numeric', minute: '2-digit' }) // "2:30 PM"
+  date = new Date(date)
+  return date.toLocaleTimeString(locale, { hour: "numeric", minute: "2-digit" }) // "2:30 PM"
 }
