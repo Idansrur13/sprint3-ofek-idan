@@ -1,7 +1,10 @@
 export function MailHeader() {
   return (
-    <div className="mail-header">
-      menu , Gmail ,{<input type="search" />} ,icons
-    </div>
+    <section className="mail-header">
+      <div >menu</div>
+      <div>Gmail</div>
+      <div>{<input type="search" />}</div>
+      <div>icons</div>
+    </section>
   )
 }

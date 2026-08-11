@@ -8,13 +8,11 @@ export function MailIndex() {
   const mails = demoMails
 
   return (
-    <React.Fragment>
+      <section className="mail-index">
       <MailHeader />
       {/* <MailLeftSideBar /> */}
       {/* <MailRightSideBar /> */}
-      <section className="container">
         <MailList mails={mails} />
       </section>
-    </React.Fragment>
   )
 }
