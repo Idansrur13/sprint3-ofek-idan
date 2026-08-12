@@ -13,6 +13,7 @@ export function MailIndex() {
       {/* <MailLeftSideBar /> */}
       {/* <MailRightSideBar /> */}
         <MailList mails={mails} />
+        <footer>foooter</footer>
       </section>
   )
 }
