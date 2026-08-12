@@ -1,26 +1,6 @@
 const { Link, NavLink, useLocation } = ReactRouterDOM
-
-const KeepIcon = () => {
-  return (
-    <img
-      src='https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/google-keep-2026/default.svg'
-      alt='Google Keep (2026)'
-      width='22'
-      height='22'
-    />
-  )
-}
-
-const MailIcon = () => {
-  return (
-    <img
-      src='https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/gmail-2026/default.svg'
-      alt='Gmail (2026)'
-      width='22'
-      height='22'
-    />
-  )
-}
+const { useState } = React
+import { Menu, MailIcon, KeepIcon } from '../apps/icons/icons.jsx'
 
 const APP_BRANDS = {
   '/mail': { Icon: MailIcon, label: 'GMAIL' },
@@ -33,11 +13,14 @@ export function AppHeader() {
   const brandKey = Object.keys(APP_BRANDS).find((path) =>
     pathname.startsWith(path),
   )
-
+  const [openNavBar, setOpenNavBar] = useState(false)
   const { Icon, label } = APP_BRANDS[brandKey] || DEFAULT_BRAND
   console.log(pathname, 'patttha nameeeeeeeeeeee')
   return (
-    <header className='app-header'>
+    <header className='app-header '>
+      <div onClick={() => setOpenNavBar((v) => !v)}>
+        <Menu />
+      </div>
       <Link to='/'>
         <div
           style={{ display: 'flex', height: 28, gap: 4, alignItems: 'center' }}
@@ -46,12 +29,28 @@ export function AppHeader() {
           <h4>{label}</h4>
         </div>
       </Link>
-      <nav>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/about'>About</NavLink>
-        <NavLink to='/mail'>Mail</NavLink>
-        <NavLink to='/note'>Note</NavLink>
-      </nav>
+      {openNavBar && (
+        <div style={{ position: 'absolute', top: 40, zIndex: 4 }}>
+          <NavBar label={label} />
+        </div>
+      )}
     </header>
+  )
+}
+
+function NavBar({ label }) {
+  return (
+    <nav className='nav-div'>
+      <NavLink to='/'> Home</NavLink>
+      <NavLink to='/about'>About</NavLink>
+      <NavLink to='/mail'>
+        <MailIcon /> Mail
+      </NavLink>
+      <NavLink to='/note'>
+        {' '}
+        <KeepIcon />
+        Note
+      </NavLink>
+    </nav>
   )
 }

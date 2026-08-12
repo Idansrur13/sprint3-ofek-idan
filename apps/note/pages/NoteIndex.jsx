@@ -1,4 +1,5 @@
 const { useState, useEffect } = React
+const { useSearchParams } = ReactRouterDOM
 
 const tabs = ['all', 'isPinned']
 import { notes as demoNotes } from '../../../services/demoDataNotes.jsx'
@@ -7,7 +8,6 @@ import { NoteHeader } from '../cmps/NoteHeader.jsx'
 
 // type Tabs = 'isPinned' | 'all'
 const filteredNotes = (filter, notes = []) => {
-  console.log('filter notes', filter, notes)
   if (filter === 'all' || !filter) {
     return notes.sort((a, b) => {
       return b.isPinned - a.isPinned
@@ -20,12 +20,20 @@ const filteredNotes = (filter, notes = []) => {
 }
 
 export function NoteIndex() {
-  const [filter, setFilter] = useState('all')
-  const [notes, setNotes] = useState(demoNotes)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const filterParams = searchParams.get('filter') || 'all'
 
+  const [filter, setFilter] = useState(filterParams)
+  const [notes, setNotes] = useState(demoNotes)
+  console.log('filter', filter)
   //   useEffect(() => {
   //     console.log('שונה', filter, notes)
   //   }, [filter])
+
+  function onSetFilter(newFilter) {
+    setFilter(newFilter)
+    setSearchParams({ filter: newFilter })
+  }
 
   const setNoteTodoIsDone = ({ noteId, todoIdx, isDone }) => {
     setNotes((prevNotes) =>
@@ -71,7 +79,7 @@ export function NoteIndex() {
             <div
               key={t}
               className={'note-nav-item' + (filter === t ? ' active' : '')}
-              onClick={() => setFilter(t)}
+              onClick={() => onSetFilter(t)}
             >
               <p>{t}</p>
             </div>

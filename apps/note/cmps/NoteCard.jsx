@@ -1,7 +1,11 @@
+import { TrashIcon, LayersIcon, PancelIcon } from '../../icons/icons'
+
 const { useState } = React
 
 export function NoteCard({ note, setNoteTodoIsDone, setPinedNote }) {
   const info = note.info
+
+  function deleteNote() {}
   console.log('selte', note.isPinned)
   return (
     <div
@@ -52,6 +56,18 @@ export function NoteCard({ note, setNoteTodoIsDone, setPinedNote }) {
             </div>
           )
         })}
+
+      <div className='note-action'>
+        <button onClick={() => deleteNote()}>
+          <TrashIcon />
+        </button>
+        <button>
+          <LayersIcon />
+        </button>
+        <button>
+          <PancelIcon />
+        </button>
+      </div>
     </div>
   )
 }

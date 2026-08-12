@@ -160,3 +160,58 @@ h3 {
     font-size: 20px;
 
 }
+
+.note-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2px;
+
+    margin-top: auto;
+    padding-top: 6px;
+
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+.card-note:hover .note-action,
+.card-note:focus-within .note-action {
+    opacity: 1;
+}
+
+button,
+.icon-botton {
+    display: grid;
+    place-content: center;
+
+    width: 32px;
+    height: 32px;
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #3c4043;
+
+    cursor: pointer;
+    transition: background-color .15s ease;
+}
+
+button:hover {
+    background-color: #00000014;
+}
+
+button:active {
+    background-color: #00000024;
+}
+
+button:focus-visible {
+    outline: 2px solid #1a73e8;
+    outline-offset: 1px;
+}
+
+button svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}

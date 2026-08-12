@@ -2,8 +2,15 @@
 
 .note-layout {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    overflow: hidden;
+    grid-template-columns: 110px 1fr;
     align-items: start;
+
+    transition: grid-template-columns .25s ease-in-out;
+}
+
+.note-layout:has(.note-nav:hover) {
+    grid-template-columns: 200px 1fr;
 }
 
 .note-nav {
@@ -20,6 +27,8 @@
 }
 
 .note-nav-item {
+    overflow: hidden;
+
     padding: 10px 16px;
     border-radius: 0 24px 24px 0;
 
@@ -30,9 +39,7 @@
     transition: background-color .5s ease;
 }
 
-.note-nav-item p {
-    margin: 0;
-}
+
 
 .note-nav-item:hover {
     background-color: rgba(0, 0, 0, .06);
@@ -83,6 +90,7 @@
 
     width: min(600px, 92vw);
     padding: 12px 16px;
+    transition: height .15s ease;
 
     border-radius: 12px;
     border: 1px solid #e0e0e0;
@@ -122,6 +130,8 @@
     padding-top: 8px;
 }
 
+
+
 .header-action {
     display: flex;
     justify-content: flex-start;
@@ -145,18 +155,18 @@ i:hover,
     background-color: rgba(0, 0, 0, .07);
 }
 
-.note-search button {
+.save-note-btn {
     align-self: flex-end;
     border: 0;
     background-color: #1a73e8;
     color: #fff;
 
-    padding: 8px 16px;
+    padding: 8px 32px;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.5s ease;
 }
 
-.note-search button:hover {
+.save-note-btn:hover {
     background-color: #1558c0;
 }

@@ -1,4 +1,11 @@
 const { useState } = React
+import {
+  ImageIcon,
+  X,
+  YouTubeIcon,
+  MicIcon,
+  PalletteIcon,
+} from '../../icons/icons.jsx'
 
 function getEmptyNote() {
   return {
@@ -10,6 +17,7 @@ function getEmptyNote() {
     info: { title: '', todos: [] },
   }
 }
+
 export function NoteHeader({ addNote }) {
   const [newNote, setNewNote] = useState(getEmptyNote())
   const [isOpen, setIsOpen] = useState(false)
@@ -38,6 +46,11 @@ export function NoteHeader({ addNote }) {
     return
   }
 
+  const cancelNote = () => {
+    setIsOpen(false)
+    setNewNote(getEmptyNote())
+  }
+
   const todos = newNote.info.todos || []
 
   const handleChangeTodos = (idx, value) => {
@@ -56,43 +69,73 @@ export function NoteHeader({ addNote }) {
 
   return (
     <div className='note-header '>
-      <div
-        className='note-search'
-        style={{
-          backgroundColor: newNote.style.backgroundColor || '#ffff',
-        }}
-      >
-        {' '}
-        <div style={{ display: 'flex' }}>
-          <input
-            type='text'
-            name='title'
-            value={newNote.info.title || ''}
-            onChange={handleChange}
-            className='text-center note-title'
-          />
-          <i className='fa-solid fa-x'></i>
-        </div>
-        {isOpen && (
-          <div>
-            <form onSubmit={submitForm}>
+      <form onSubmit={submitForm}>
+        <div
+          className='note-search'
+          style={{
+            backgroundColor: newNote.style.backgroundColor || '#ffff',
+          }}
+        >
+          {' '}
+          <div style={{ display: 'flex', gap: 4 }}>
+            <input
+              type='text'
+              name='title'
+              placeholder='Note title'
+              value={newNote.info.title || ''}
+              onChange={handleChange}
+              className='text-center note-title'
+            />
+
+            <button onClick={() => cancelNote()}>
+              <MicIcon />
+            </button>
+            {/* <button onClick={() => {}}>
+            <YouTubeIcon />
+          </button> */}
+            <button>
+              <ImageIcon />
+            </button>
+            <label htmlFor='color' className='icon-botton'>
+              <PalletteIcon />
+            </label>
+            <input
+              type='color'
+              name='backgroundColor'
+              id='color'
+              hidden
+              onChange={handleChangeColor}
+              value={newNote.style.backgroundColor}
+            />
+
+            <button onClick={() => cancelNote()}>
+              <X />
+            </button>
+          </div>
+          {isOpen && (
+            <div>
               <input
                 type='text'
                 name='txt'
+                placeholder='Note text...'
                 value={newNote.info.txt || ''}
                 onChange={handleChange}
               />
               {todos.map((t, i) => (
-                <input
-                  key={i}
-                  type='text'
-                  name='todo'
-                  value={t.txt || ''}
-                  onChange={(e) => handleChangeTodos(i, e.target.value)}
-                />
+                <div>
+                  <input
+                    key={i}
+                    type='text'
+                    name='todo'
+                    value={t.txt || ''}
+                    onChange={(e) => handleChangeTodos(i, e.target.value)}
+                  />
+                </div>
               ))}
 
               <div className='header-action'>
+                <button>+</button>
+
                 <input
                   type='text'
                   name='todo'
@@ -102,26 +145,14 @@ export function NoteHeader({ addNote }) {
                     handleChangeTodos(todos.length, e.target.value)
                   }
                 />
-                <label htmlFor='color'>
-                  {' '}
-                  <i className='fa-solid fa-palette'> </i>{' '}
-                </label>
-                <input
-                  type='color'
-                  name='backgroundColor'
-                  id='color'
-                  hidden
-                  onChange={handleChangeColor}
-                  value={newNote.style.backgroundColor}
-                />
-                <i className='fa-solid fa-image'></i>
-                <i className='fa-solid fa-x'></i>
               </div>
-              <button>save</button>
-            </form>
-          </div>
-        )}
-      </div>
+              <button htmlFor='color' className='save-note-btn'>
+                save
+              </button>
+            </div>
+          )}
+        </div>
+      </form>
     </div>
   )
 }
