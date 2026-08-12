@@ -1,24 +1,25 @@
 const { useState } = React
 
-export function NoteCard({ note, setNoteTodoIsDone }) {
-  const [selectedNoteId, setSelctedNoteId] = useState(false)
+export function NoteCard({ note, setNoteTodoIsDone, setPinedNote }) {
   const info = note.info
-  console.log('selte', selectedNoteId)
+  console.log('selte', note.isPinned)
   return (
     <div
       className='card-note'
-      onClick={(e) => setSelctedNoteId((v) => !v)}
+      onClick={() => setPinedNote(note.id, !note.isPinned)}
       style={{ backgroundColor: note.style.backgroundColor || '#0d0' }}
     >
-      {selectedNoteId && (
-        <div className='check-note'>
-          {selectedNoteId}
-          <button>
-            <i className='fa-regular fa-circle-check'></i>
-          </button>
-        </div>
-      )}
-      <p className='nite-title'>{info.title}</p>
+      <div>
+        <p className='note-title ' style={{ margin: 0 }}>
+          {info.title}
+        </p>
+        {note.isPinned && (
+          <div className='check-note'>
+            {note.isPinned}
+            <i class='fa-solid fa-map-pin'></i>{' '}
+          </div>
+        )}
+      </div>
       <p className='nite-p'>{info.txt}</p>
 
       {info.url && (
@@ -27,21 +28,25 @@ export function NoteCard({ note, setNoteTodoIsDone }) {
         </div>
       )}
       {info.todos &&
-        info.todos.map((t) => {
+        info.todos.map((t, i) => {
           return (
             <div
-              onClick={(e) => {
-                // e.preventDefault()
-              }}
+              onClick={(e) => e.stopPropagation()}
+              key={i}
+              className='todo-line'
             >
               <label htmlFor={t.txt}>{t.txt}</label>
               <input
                 type='checkbox'
                 id={t.txt}
                 name={t.txt}
-                value={t.isDone}
+                checked={!!t.isDone}
                 onChange={(e) => {
-                  setNoteTodoIsDone({ noteId: t.id, idDone: e.target.value })
+                  setNoteTodoIsDone({
+                    noteId: note.id,
+                    todoIdx: i,
+                    isDone: e.target.checked,
+                  })
                 }}
               />
             </div>

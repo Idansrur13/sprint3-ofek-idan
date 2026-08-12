@@ -1,65 +1,162 @@
- /* note list */
+/* note list */
 
- .card-note {
-     padding: 8px;
-     position: relative;
-     border: 1px solid #cacaca;
-     border-radius: 8px;
+.note-section-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #8a8a8a;
+    margin: 24px 0 10px;
+}
 
-     /* width: 100%; */
-     min-height: 50px;
-     height: fit-content;
+.node-list {
+    column-width: 220px;
+    column-gap: 16px;
+}
 
-     display: flex;
-     flex-direction: column;
-     break-inside: avoid;
-     margin-bottom: 10px;
- }
+.card-note {
+    padding: 14px 16px;
+    position: relative;
 
- .nite-title {
-     font-size: 22px;
-     color: #3c3b3b;
-     margin: 0;
-     margin-bottom: 8px;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
 
-     font-weight: 400;
- }
+    min-height: 60px;
+    height: fit-content;
 
- .nite-p {
-     font-size: 16px;
-     color: #6f6f6f;
-     font-weight: 300;
-     margin: 0;
-     margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    break-inside: avoid;
+    margin-bottom: 16px;
+
+    cursor: pointer;
+    transition: box-shadow .18s ease, transform .18s ease;
+}
+
+.card-note:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .18);
+    transform: translateY(-2px);
+}
+
+.nite-title {
+    font-size: 18px;
+    line-height: 1.3;
+    color: #202124;
+    margin: 0 0 8px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.nite-p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #5f6368;
+    font-weight: 400;
+    margin: 0 0 8px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.img-note {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.img-note img {
+    margin-inline: auto;
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-note label {
+    font-size: 14px;
+    color: #3c4043;
+    cursor: pointer;
+}
+
+/* ___________________________ */
+.card-note input[type='checkbox'] {
+    appearance: none;
+    -webkit-appearance: none;
+
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+
+    border: 2px solid #5f6368;
+    border-radius: 2px;
+    background-color: transparent;
+
+    display: grid;
+    place-content: center;
+
+    cursor: pointer;
+
+    transition: background-color .15s ease, border-color .15s ease;
+}
+
+/* the check mark: two borders of an empty box, rotated */
+.card-note input[type='checkbox']::before {
+    content: '';
+
+    width: 9px;
+    height: 5px;
+    margin-top: -2px;
+
+    border: 2px solid #fff;
+    border-top: 0;
+    border-inline-end: 0;
+    transform: rotate(-45deg);
+
+    opacity: 0;
+}
+
+.card-note input[type='checkbox']:checked {
+    background-color: #5f6368;
+}
+
+.card-note input[type='checkbox']:checked::before {
+    opacity: 1;
+}
+
+.card-note input[type='checkbox']:focus-visible {
+    outline: 1px solid #1a73e8;
+
+}
+
+.card-note input[type='checkbox']:checked+label,
+.card-note label:has(~input[type='checkbox']:checked) {
+    color: #80868b;
+    text-decoration: line-through;
+}
+
+/* ___________________________ */
+
+.card-note .todo-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 4px 0;
+    border-top: 1px solid #00000010;
+}
+
+.check-note {
+    position: absolute;
+    top: 8px;
+    inset-inline-end: 10px;
+    color: #d68b00;
+    font-size: 14px;
+}
 
 
- }
+/* ____________________ text */
+h3 {
+    font-size: 20px;
 
- .node-list {
-     column-width: 200px;
-     /* gap: 20px; */
-
-
- }
-
- .img-note {
-     overflow: 'hidden';
-     justify-content: 'center';
-     display: flex;
-
- }
-
- .img-note img {
-     margin-inline: auto;
-
-     max-height: 200px;
-     width: 200px;
-     border-radius: 10px;
- }
-
- .check-note {
-     position: absolute;
-
-     top: -4px;
-     left: -4px
- }
+}
