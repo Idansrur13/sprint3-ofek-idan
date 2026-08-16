@@ -11,6 +11,8 @@ import {
 } from "../../../services/event-bus.service.js"
 import { utilService } from "../../../services/util.service.js"
 import { useEffectUpdate } from "../custom-hooks/useEffectUpdate.js"
+import { MailRightSideBar } from "../cmps/MailRightSideBar.jsx"
+import { MailLeftSideBar } from "../cmps/MailLeftSideBar.jsx"
 
 export function MailIndex() {
   console.log(demoMails)
@@ -65,17 +67,11 @@ export function MailIndex() {
         onSetFilterBy={setFilterBy}
         onClearFilter={onClearFilter}
       />
-      {/* <MailFilter
-        filterBy={filterBy}
-        onSetFilterBy={setFilterBy}
-        onClearFilter={onClearFilter}
-      /> */}
-      {/* <MailLeftSideBar /> */}
-      {/* <MailRightSideBar /> */}
 
-      <Link to="/mail/edit">
-        <button>Add a mail</button>
-      </Link>
+      <MailLeftSideBar />
+      <MailRightSideBar />
+
+    
       <MailList mails={mails} onRemoveMail={onRemoveMail} />
       <footer>foooter</footer>
     </section>

@@ -13,7 +13,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
     const { value, name, type } = ev.target
     setFilterByToEdit((prev) => ({
       ...prev,
-      txt: value
+      txt: value,
       //   [name]: type === "text" ? value : value,
     }))
   }
@@ -23,7 +23,23 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
   }
   return (
     <section className="mail-filter">
-      <p>Filter:</p>
+      <p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-search-icon lucide-search"
+        >
+          <path d="m21 21-4.34-4.34" />
+          <circle cx="11" cy="11" r="8" />
+        </svg>
+      </p>
       <input
         onChange={(ev) => handleChange(ev)}
         value={filterByToEdit.txt}
@@ -31,8 +47,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
         name="txt"
         placeholder="Search mail"
       />
-
-      <button onClick={clearFilter}>Clear</button>
+      {/* <button></button> add serach options emoji */}
     </section>
   )
 }
