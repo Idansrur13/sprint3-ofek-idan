@@ -15,7 +15,10 @@ export function MailList({ mails, onRemoveMail }) {
             <Link to={`/mail/edit/${mail.id}`}>
               <button className="btn-edit">Edit</button>
             </Link>
-            <button onClick={() => onRemoveMail(mail.id)} className="btn-remove">
+            <button
+              onClick={() => onRemoveMail(mail.id)}
+              className="btn-remove"
+            >
               x
             </button>
           </div>

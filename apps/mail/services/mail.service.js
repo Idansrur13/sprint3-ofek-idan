@@ -1,8 +1,9 @@
 import { utilService } from "../../../services/util.service.js"
 import { storageService } from "../../../services/async-storage.service.js"
+import { demoMails } from "./demoDataMail.jsx"
 
 const MAIL_KEY = "mailDB"
-// _createMails()
+_createMails()
 
 export const mailService = {
   testFunction,
@@ -62,11 +63,11 @@ function save(mail) {
   }
 }
 
-function getEmptyMail(subject = "hello", to = "") {
+function getEmptyMail(subject = "hello", to, from = "", body = "") {
   return { subject, to }
 }
 
-function getDefaultFilter(filterBy = { txt: ""}) {
+function getDefaultFilter(filterBy = { txt: "" }) {
   return { txt: filterBy.txt }
 }
 
@@ -80,44 +81,34 @@ function getFilterFromSearchParams(searchParams) {
   return filterBy
 }
 
-// function getSpeedStats() {
-//   return storageService.query(MAIL_KEY).then((mails) => {
-//     const mailCountBySpeedMap = _getmailCountBySpeedMap(mails)
-//     const data = Object.keys(mailCountBySpeedMap).map((speedName) => ({
-//       title: speedName,
-//       value: mailCountBySpeedMap[speedName],
-//     }))
-//     return data
-//   })
-// }
-
-// function getVendorStats() {
-//   return storageService.query(MAIL_KEY).then((mails) => {
-//     const mailCountByVendorMap = _getmailCountByVendorMap(mails)
-//     const data = Object.keys(mailCountByVendorMap).map((vendor) => ({
-//       title: vendor,
-//       value: Math.round((mailCountByVendorMap[vendor] / mails.length) * 100),
-//     }))
-//     return data
-//   })
-// }
-
 function _createMails() {
   let mails = utilService.loadFromStorage(MAIL_KEY)
   if (!mails || !mails.length) {
     mails = []
     const recipients = ["baba", "bobo", "lulu", "coco"]
+    const words = ["Hello", "WOW", "Oh", "Why"]
+    const sentences = [
+      "Miss you!",
+      "Your package left our warehouse and should arrive within 2 business days.",
+      "You have won a brand new car!!!",
+      "Thanks! Fixed the trash folder",
+    ]
     for (let i = 0; i < 6; i++) {
       const to =
         recipients[utilService.getRandomIntInclusive(0, recipients.length - 1)]
-      mails.push(_createmail("Hello!@#", to))
+      // mails.push(_createmail("Hello!@#", to))
+      const subject =
+        words[utilService.getRandomIntInclusive(0, words.length - 1)]
+      const body =
+        sentences[utilService.getRandomIntInclusive(0, sentences.length - 1)]
+      mails.push(_createmail(subject, to, "", body))
     }
     utilService.saveToStorage(MAIL_KEY, mails)
   }
 }
 
-function _createmail(subject = "hi:D", to = "baba") {
-  const mail = getEmptymail(subject, to)
+function _createmail(subject = "hi:D", to = "baba", from = "", body = "") {
+  const mail = getEmptyMail(subject, to, from, body)
   mail.id = utilService.makeId()
   return mail
 }
@@ -134,25 +125,3 @@ function _setNextPrevmailId(mail) {
     return mail
   })
 }
-
-// function _getmailCountBySpeedMap(mails) {
-//   const mailCountBySpeedMap = mails.reduce(
-//     (map, mail) => {
-//       if (mail.maxSpeed < 120) map.slow++
-//       else if (mail.maxSpeed < 200) map.normal++
-//       else map.fast++
-//       return map
-//     },
-//     { slow: 0, normal: 0, fast: 0 },
-//   )
-//   return mailCountBySpeedMap
-// }
-
-// function _getmailCountByVendorMap(mails) {
-//   const mailCountByVendorMap = mails.reduce((map, mail) => {
-//     if (!map[mail.vendor]) map[mail.vendor] = 0
-//     map[mail.vendor]++
-//     return map
-//   }, {})
-//   return mailCountByVendorMap
-// }
