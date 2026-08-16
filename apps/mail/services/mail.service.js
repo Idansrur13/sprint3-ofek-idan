@@ -64,7 +64,7 @@ function save(mail) {
 }
 
 function getEmptyMail(subject = "hello", to, from = "", body = "") {
-  return { subject, to }
+  return { subject, to, from, body }
 }
 
 function getDefaultFilter(filterBy = { txt: "" }) {
