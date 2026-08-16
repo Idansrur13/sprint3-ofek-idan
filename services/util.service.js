@@ -1,4 +1,6 @@
 export const utilService = {
+  loadFromStorage,
+  saveToStorage,
   makeId,
   makeLorem,
   getRandomIntInclusive,
@@ -10,8 +12,8 @@ export const utilService = {
   getMonthName,
   getDayName,
   getTimeOfDay,
-  loadFromStorage,
-  saveToStorage,
+  animateCSS,
+  trimObj,
 }
 
 function saveToStorage(key, val) {
@@ -152,4 +154,28 @@ function getMonthName(date, locale) {
 function getTimeOfDay(date, locale) {
   date = new Date(date)
   return date.toLocaleTimeString(locale, { hour: "numeric", minute: "2-digit" }) // "2:30 PM"
+}
+
+function animateCSS(el, animation = "bounce") {
+  const prefix = "animate__"
+  return new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`
+    el.classList.add(`${prefix}animated`, animationName)
+    function handleAnimationEnd(event) {
+      event.stopPropagation()
+      el.classList.remove(`${prefix}animated`, animationName)
+      resolve("Animation ended")
+    }
+
+    el.addEventListener("animationend", handleAnimationEnd, { once: true })
+  })
+}
+
+function trimObj(obj) {
+  const trimmedObj = {}
+
+  for (const key in obj) {
+    if (obj[key]) trimmedObj[key] = obj[key]
+  }
+  return trimmedObj
 }

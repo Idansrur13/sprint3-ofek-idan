@@ -62,7 +62,7 @@ function save(mail) {
   }
 }
 
-function getEmptyMail(subject = "", to = "") {
+function getEmptyMail(subject = "hello", to = "") {
   return { subject, to }
 }
 

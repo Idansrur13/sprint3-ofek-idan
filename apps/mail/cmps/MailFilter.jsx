@@ -13,7 +13,8 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
     const { value, name, type } = ev.target
     setFilterByToEdit((prev) => ({
       ...prev,
-      [name]: type === "text" ? value : value,
+      value,
+      //   [name]: type === "text" ? value : value,
     }))
   }
 
@@ -31,7 +32,6 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
         placeholder="Placeholder"
       />
 
- 
       <button onClick={clearFilter}>Clear</button>
     </section>
   )

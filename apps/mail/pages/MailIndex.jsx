@@ -16,16 +16,44 @@ export function MailIndex() {
   console.log(demoMails)
 
   const [mails, setMails] = useState(null)
-
   const [searchParams, setSearchParams] = useSearchParams()
-  const [filterBy, setFilterBy] = useState(
-    mailService.getFilterFromSearchParams(searchParams),
-  )
+  const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+
+  useEffect(() => {
+    loadMails(filterBy)
+  }, [])
+
+  useEffectUpdate(() => {
+    loadMails(filterBy)
+    setSearchParams(utilService.trimObj(filterBy))
+  }, [filterBy])
+
+  function loadMails() {
+    mailService.query(filterBy).then((mails) => setMails(mails))
+  }
+
+  function onRemoveMail(mailId) {
+    mailService
+      .remove(mailId)
+      .then(() => {
+        setMails((prev) => prev.filter((mail) => mail.id !== mailId))
+        onClearFilter()
+        showSuccessMsg(`mail ${mailId} removed`)
+      })
+      .catch((err) => showErrorMsg(`Couldn't remove ${mailId}`))
+  }
 
   function onClearFilter() {
     setFilterBy(mailService.getDefaultFilter())
   }
 
+  if (!mails)
+    return (
+      // <div className="loader">
+      //   <img src="./assets/img/loader.svg" alt="A loader." />
+      // </div>
+      <h2>loading..</h2>
+    )
 
   return (
     <section className="mail-index">
@@ -33,13 +61,16 @@ export function MailIndex() {
       {/* <MailLeftSideBar /> */}
       {/* <MailRightSideBar /> */}
 
-      <MailList mails={demoMails} />
-      <footer>foooter</footer>
       <MailFilter
         filterBy={filterBy}
         onSetFilterBy={setFilterBy}
         onClearFilter={onClearFilter}
       />
+      <Link to="/mail/edit">
+					<button>Add a mail</button>
+				</Link>
+      <MailList mails={mails} onRemoveMail={onRemoveMail} />
+      <footer>foooter</footer>
     </section>
   )
 }
