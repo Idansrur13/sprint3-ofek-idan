@@ -7,11 +7,11 @@ export const Menu = (isActive = false) => {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       color={isActive ? '#424141' : '#787878'}
-      class='lucide lucide-menu-icon lucide-menu'
+      className='lucide lucide-menu-icon lucide-menu'
     >
       <path d='M4 5h16' />
       <path d='M4 12h16' />
@@ -27,7 +27,7 @@ export const KeepIcon = () => {
       alt='Google Keep (2026)'
       width='22'
       height='22'
-      className='icon'
+      classNameName='icon'
     />
   )
 }
@@ -39,7 +39,7 @@ export const MailIcon = () => {
       alt='Gmail (2026)'
       width='22'
       height='22'
-      className='icon'
+      classNameName='icon'
     />
   )
 }
@@ -52,10 +52,10 @@ export const TrashIcon = () => {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='lucide lucide-trash2-icon lucide-trash-2'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='lucide lucide-trash2-icon lucide-trash-2'
     >
       <path d='M10 11v6' />
       <path d='M14 11v6' />
@@ -74,10 +74,10 @@ export const LayersIcon = () => {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='lucide lucide-layers-plus-icon lucide-layers-plus'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='lucide lucide-layers-plus-icon lucide-layers-plus'
     >
       <path d='M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 .83.18 2 2 0 0 0 .83-.18l8.58-3.9a1 1 0 0 0 0-1.831z' />
       <path d='M16 17h6' />
@@ -96,10 +96,10 @@ export const PancelIcon = () => {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='lucide lucide-pencil-line-icon lucide-pencil-line'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='lucide lucide-pencil-line-icon lucide-pencil-line'
     >
       <path d='M13 21h8' />
       <path d='m15 5 4 4' />
@@ -116,10 +116,10 @@ export const X = () => {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='lucide lucide-x-icon lucide-x'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='lucide lucide-x-icon lucide-x'
     >
       <path d='M18 6 6 18' />
       <path d='m6 6 12 12' />
@@ -135,10 +135,10 @@ export const ImageIcon = () => {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='lucide lucide-image-icon lucide-image'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='lucide lucide-image-icon lucide-image'
     >
       <rect width='18' height='18' x='3' y='3' rx='2' ry='2' />
       <circle cx='9' cy='9' r='2' />
@@ -163,10 +163,10 @@ export const MicIcon = () => {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='lucide lucide-mic-icon lucide-mic'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='lucide lucide-mic-icon lucide-mic'
     >
       <path d='M12 19v3' />
       <path d='M19 10v2a7 7 0 0 1-14 0v-2' />
@@ -183,10 +183,10 @@ export const PalletteIcon = () => {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='lucide lucide-palette-icon lucide-palette'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='lucide lucide-palette-icon lucide-palette'
     >
       <path d='M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z' />
       <circle cx='13.5' cy='6.5' r='.5' fill='currentColor' />

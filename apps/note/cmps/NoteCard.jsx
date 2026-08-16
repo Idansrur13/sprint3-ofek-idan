@@ -20,7 +20,7 @@ export function NoteCard({ note, setNoteTodoIsDone, setPinedNote }) {
         {note.isPinned && (
           <div className='check-note'>
             {note.isPinned}
-            <i class='fa-solid fa-map-pin'></i>{' '}
+            <i className='fa-solid fa-map-pin'></i>{' '}
           </div>
         )}
       </div>
