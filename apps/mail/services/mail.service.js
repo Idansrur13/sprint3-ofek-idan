@@ -23,13 +23,18 @@ export const mailService = {
 function query(filterBy = {}) {
   return storageService.query(MAIL_KEY).then((mails) => {
     if (filterBy.txt) {
-      //   const regExp = new RegExp(filterBy.txt, 'i')
+      const regExp = new RegExp(filterBy.txt, "i")
       mails = mails.filter(
         (mail) =>
-          mail.subject.includes(filterBy.txt) ||
-          mail.from.includes(filterBy.txt) ||
-          mail.to.includes(filterBy.txt),
-      )
+          regExp.test(mail.from) ||
+          regExp.test(mail.subject) ||
+          regExp.test(mail.body),
+      ) // mails = mails.filter(
+      //   (mail) =>
+      //     mail.subject.includes(filterBy.txt) ||
+      //     mail.from.includes(filterBy.txt) ||
+      //     mail.to.includes(filterBy.txt),
+      // )
     }
 
     // if (filterBy.minSpeed) {
@@ -63,8 +68,14 @@ function save(mail) {
   }
 }
 
-function getEmptyMail(subject = "hello", to, from = "", body = "") {
-  return { subject, to, from, body }
+function getEmptyMail(
+  subject = "hello",
+  to,
+  from = "",
+  body = "",
+  createdAt = "",
+) {
+  return { subject, to, from, body, createdAt }
 }
 
 function getDefaultFilter(filterBy = { txt: "" }) {
@@ -93,22 +104,34 @@ function _createMails() {
       "You have won a brand new car!!!",
       "Thanks! Fixed the trash folder",
     ]
+    mails.push(...demoMails)
     for (let i = 0; i < 6; i++) {
-      const to =
+      const from =
         recipients[utilService.getRandomIntInclusive(0, recipients.length - 1)]
-      // mails.push(_createmail("Hello!@#", to))
       const subject =
         words[utilService.getRandomIntInclusive(0, words.length - 1)]
       const body =
         sentences[utilService.getRandomIntInclusive(0, sentences.length - 1)]
-      mails.push(_createmail(subject, to, "", body))
+      mails.push(_createmail(subject, "", from, body, Date.now))
     }
     utilService.saveToStorage(MAIL_KEY, mails)
   }
 }
 
-function _createmail(subject = "hi:D", to = "baba", from = "", body = "") {
-  const mail = getEmptyMail(subject, to, from, body)
+function _createmail(
+  subject = "hi:D",
+  to = "",
+  from = "Me",
+  body = "",
+  createdAt = "",
+) {
+  const mail = getEmptyMail(
+    subject,
+    to,
+    from,
+    body,
+    (createdAt = Date.now - 10000),
+  )
   mail.id = utilService.makeId()
   return mail
 }
