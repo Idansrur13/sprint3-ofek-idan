@@ -69,11 +69,11 @@ function save(mail) {
 }
 
 function getEmptyMail(
-  subject = "hello",
+  subject = "",
   to,
   from = "",
   body = "",
-  createdAt = "",
+  createdAt = Date.now(),
 ) {
   return { subject, to, from, body, createdAt }
 }
@@ -112,7 +112,7 @@ function _createMails() {
         words[utilService.getRandomIntInclusive(0, words.length - 1)]
       const body =
         sentences[utilService.getRandomIntInclusive(0, sentences.length - 1)]
-      mails.push(_createmail(subject, "", from, body, Date.now))
+      mails.push(_createmail(subject, "", from, body, Date.now()))
     }
     utilService.saveToStorage(MAIL_KEY, mails)
   }
@@ -130,7 +130,7 @@ function _createmail(
     to,
     from,
     body,
-    (createdAt = Date.now - 10000),
+    (createdAt = Date.now()),
   )
   mail.id = utilService.makeId()
   return mail

@@ -22,7 +22,7 @@ export function MailEdit() {
 
   function handleChange({ target }) {
     const { type, name, value } = target
-    setmail((prev) => ({ ...prev, [name]: type === "text" ? value : +value }))
+    setmail((prev) => ({ ...prev, [name]: value }))
   }
 
   function onSavemail(ev) {

@@ -36,12 +36,14 @@ export function MailIndex() {
   }
 
   function onRemoveMail(mailId) {
-    mailService.remove(mailId).then(() => {
-      setMails((prev) => prev.filter((mail) => mail.id !== mailId))
-      onClearFilter()
-      showSuccessMsg(`mail ${mailId} removed`)
-    })
-    .catch((err) => showErrorMsg(`Couldn't remove ${mailId}`))
+    mailService
+      .remove(mailId)
+      .then(() => {
+        setMails((prev) => prev.filter((mail) => mail.id !== mailId))
+        onClearFilter()
+        showSuccessMsg(`mail ${mailId} removed`)
+      })
+      .catch((err) => showErrorMsg(`Couldn't remove ${mailId}`))
   }
 
   function onClearFilter() {
@@ -50,7 +52,7 @@ export function MailIndex() {
 
   if (!mails)
     return (
-      <h2>NO MAILS</h2>
+      <h2>Loading...</h2>
       // <div className="loader">
       //   <img src="./assets/img/loader.svg" alt="A loader." />
       // </div>
@@ -58,15 +60,19 @@ export function MailIndex() {
 
   return (
     <section className="mail-index">
-      <MailHeader />
-      {/* <MailLeftSideBar /> */}
-      {/* <MailRightSideBar /> */}
-
-      <MailFilter
+      <MailHeader
         filterBy={filterBy}
         onSetFilterBy={setFilterBy}
         onClearFilter={onClearFilter}
       />
+      {/* <MailFilter
+        filterBy={filterBy}
+        onSetFilterBy={setFilterBy}
+        onClearFilter={onClearFilter}
+      /> */}
+      {/* <MailLeftSideBar /> */}
+      {/* <MailRightSideBar /> */}
+
       <Link to="/mail/edit">
         <button>Add a mail</button>
       </Link>

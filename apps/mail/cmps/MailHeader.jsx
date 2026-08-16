@@ -1,4 +1,6 @@
-export function MailHeader() {
+import { MailFilter } from "./MailFilter.jsx"
+
+export function MailHeader({filterBy, onSetFilterBy, onClearFilter}) {
   return (
     <section className="mail-header">
       <section className="mail-menu">menu</section>
@@ -31,7 +33,11 @@ export function MailHeader() {
           />
         </svg>
       </div>
-      <div>{<input type="search" />}</div>
+      <MailFilter
+        filterBy={filterBy}
+        onSetFilterBy={onSetFilterBy}
+        onClearFilter={onClearFilter}
+      />
       <div className="profile-icons">
         <span>😀</span>
         <span>🐶</span>
