@@ -8,19 +8,7 @@ export function MailList({ mails, onRemoveMail }) {
     <ul className="mail-list">
       {mails.map((mail) => (
         <li key={mail.id} onClick={() => navigate(`/mail/${mail.id}`)}>
-          <MailPreview mail={mail} />
-
-          <div className="mail-actions">
-            <Link to={`/mail/edit/${mail.id}`}>
-              <button className="btn-edit">Edit</button>
-            </Link>
-            <button
-              onClick={() => onRemoveMail(mail.id)}
-              className="btn-remove"
-            >
-              x
-            </button>
-          </div>
+          <MailPreview mail={mail} onRemoveMail={onRemoveMail} />
         </li>
       ))}
     </ul>

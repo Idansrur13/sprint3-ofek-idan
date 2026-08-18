@@ -1,8 +1,9 @@
 import { utilService } from "../../../services/util.service.js"
+import { icons } from "../services/mail.icons.js"
 
-export function MailPreview({ mail }) {
+export function MailPreview({ mail, onRemoveMail }) {
   return (
-    <React.Fragment>
+    <section>
       <h3>
         <section className="select-icons"></section>
         <input type="checkbox" />
@@ -30,9 +31,20 @@ export function MailPreview({ mail }) {
         <p>{"-"}</p>
         <p className="mail-body">{mail.body}</p>
       </span>
-      <span className="send-time">
-        {utilService.getTimeOfDay(mail.createdAt)}
-        {/* ------
+
+      <div className="mail-actions" onClick={(ev) => ev.stopPropagation()}>
+        <span
+          className="btn-remove"
+          onClick={(ev) => {
+            onRemoveMail(mail.id)
+          }}
+        >
+          {icons.trash}
+        </span>
+        <span>{icons.unreadMail}</span>
+        <span className="send-time">
+          {utilService.getTimeOfDay(mail.createdAt)}
+          {/* ------
         {utilService.getMonthName(mail.createdAt)}{" "}
         {utilService.getDayNumericDate(mail.createdAt, "he-IL", )}
         ------
@@ -41,7 +53,8 @@ export function MailPreview({ mail }) {
         {utilService.getYearName(mail.createdAt)}
         ------
         {utilService.getDayName(mail.createdAt)} */}
-      </span>
-    </React.Fragment>
+        </span>
+      </div>
+    </section>
   )
 }
