@@ -1,28 +1,9 @@
 import { utilService } from "../../../services/util.service.js"
 import { icons } from "../services/mail.icons.js"
-const { useState } = React
-export function MailPreview({ mail, onRemoveMail }) {
-  const [isRead, setIsRead] = useState(mail.isRead)
 
+export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
   const IsReadIcon = mail.isRead ? icons.unreadMail : icons.readMail
 
-  // function onRemoveMail(mailId) {
-  //   mailService
-  //     .remove(mailId)
-  //     .then(() => {
-  //       setMails((prev) => prev.filter((mail) => mail.id !== mailId))
-  //       showSuccessMsg(`mail ${mailId} removed`)
-  //     })
-  //     .catch((err) => showErrorMsg(`Couldn't remove ${mailId}`))
-  // }
-  // function onChangeIsRead(mail.id) {
-  //  mail.isRead ===
-  //     .then(() => {
-  //       setMails((prev) => prev.filter((mail) => mail.id !== mailId))
-  //       showSuccessMsg(`mail ${mailId} removed`)
-  //     })
-  //     .catch((err) => showErrorMsg(`Couldn't remove ${mailId}`))
-  // }
   return (
     <section>
       <h3>
@@ -50,15 +31,7 @@ export function MailPreview({ mail, onRemoveMail }) {
         </span>
         <span
           onClick={() => {
-            // console.log("mail.isRead:", mail.isRead)
-            console.log("isRead:", isRead)
-
-            setIsRead((prev) => {
-              !prev
-
-              // console.log("isRead:", isRead)
-            })
-            // console.log("mail.isRead:", mail.isRead)
+            onToggleRead(mail.id)
           }}
         >
           {IsReadIcon}

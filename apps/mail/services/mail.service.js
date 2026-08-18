@@ -74,7 +74,7 @@ function getEmptyMail(
   from = "",
   body = "",
   createdAt = Date.now(),
-  isRead = Math.random() > 0.5 ? true : false,
+  isRead = false,
 ) {
   return { subject, to, from, body, createdAt, isRead }
 }
