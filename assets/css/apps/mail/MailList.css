@@ -1,5 +1,4 @@
 .mail-list {
-
   opacity: 0.7;
   /* display: grid;
     grid-template-rows: 1rem ; */
@@ -16,26 +15,16 @@
   list-style: none;
 
   li {
-
-
-
-
-    h3 {
-      display: flex;
-      gap: 8px;
-      font-weight: bold;
-
-      .hollow-star {
-        width: 16px;
-        height: 14px;
-        fill: none;
-        stroke: rgb(32, 33, 36);
-        /* #ffd700; */
-        stroke-width: 2;
-        stroke-linejoin: round;
-        display: inline-block;
-        vertical-align: middle;
-      }
+    .hollow-star {
+      width: 16px;
+      height: 14px;
+      fill: none;
+      stroke: rgb(32, 33, 36);
+      /* #ffd700; */
+      stroke-width: 2;
+      stroke-linejoin: round;
+      display: inline-block;
+      vertical-align: middle;
     }
 
     .mail-main {
@@ -48,7 +37,6 @@
         padding: 0;
 
       }  */
-
   }
 
   /* width: 100%;
@@ -56,7 +44,6 @@
 }
 
 /* move to header to different css page  */
-
 
 .mail-row {
   display: flex;
@@ -71,10 +58,9 @@
   font-size: 14px;
   color: #202124;
 
-  box-shadow: inset 0 -1px 0 0 rgba(100, 121, 143, .12);
+  box-shadow: inset 0 -1px 0 0 rgba(100, 121, 143, 0.12);
   text-align: start;
   align-items: center;
-
 }
 
 .mail-row .unread:vddd {
@@ -90,16 +76,12 @@
   overflow: hidden;
 
   white-space: nowrap;
-
-
 }
 
 .mail-body {
   width: min-content;
   overflow: hidden;
-
 }
-
 
 .mail-sender {
   font-size: 18px;
@@ -107,18 +89,12 @@
   width: 200px;
   overflow: hidden;
   flex-shrink: 0;
-
-
-
-
 }
 
 .mail-row:hover {
   box-shadow: 0px 1px 8px rgb(215, 215, 215);
-  border: .2px solid rgb(215, 215, 215);
-
+  border: 0.2px solid rgb(215, 215, 215);
 }
-
 
 .mail-actions {
   /* position: absolute;
@@ -134,8 +110,6 @@
   padding-inline: 8px;
 
   margin-left: auto;
-
-
 }
 
 .btn-row-mail {
@@ -144,6 +118,4 @@
   align-self: flex-end;
   justify-self: end;
   display: flex;
-
-
 }
