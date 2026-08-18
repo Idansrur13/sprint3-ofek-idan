@@ -1,8 +1,8 @@
 const { useState, useEffect } = React
 const { Link, useSearchParams } = ReactRouterDOM
-import { demoMails } from "../services/demoDataMail.jsx"
+import { demoEmails } from "../services/demoDataMail.jsx"
 import { MailList } from "../cmps/MailList.jsx"
-import { mailService } from "../services/mail.service.js"
+import { emailsService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailHeader } from "../cmps/MailHeader.jsx"
 import {
@@ -15,62 +15,61 @@ import { MailRightSideBar } from "../cmps/MailRightSideBar.jsx"
 import { MailLeftSideBar } from "../cmps/MailLeftSideBar.jsx"
 
 export function MailIndex() {
-  const [mails, setMails] = useState(null)
+  const [emails, setEmails] = useState(null)
   const [searchParams, setSearchParams] = useSearchParams()
-  const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+  const [filterBy, setFilterBy] = useState(emailsService.getDefaultFilter())
 
   useEffect(() => {
-    loadMails(filterBy)
+    loademails(filterBy)
   }, [])
 
   useEffectUpdate(() => {
-    loadMails(filterBy)
+    loademails(filterBy)
     setSearchParams(utilService.trimObj(filterBy))
   }, [filterBy])
 
-  function loadMails() {
-    mailService.query(filterBy).then((mails) => {
-      console.log("mails from storage:", mails)
-      setMails(mails)
+  function loademails() {
+    emailsService.query(filterBy).then((emails) => {
+      console.log("emails from storage:", emails)
+      setEmails(emails)
     })
   }
 
   function onToggleRead(mailId, mailRead) {
-    const mail = mails.find((mail) => mail.id === mailId)
+    const mail = emails.find((mail) => mail.id === mailId)
     const updatedMail = { ...mail, isRead: mailRead ? true : !mail.isRead }
 
-    mailService
+    emailsService
       .save(updatedMail)
       .then(() => {
-        setMails((prevMails) =>
-          prevMails.map((mail) => (mail.id === mailId ? updatedMail : mail)),
+        setEmails((prevEmails) =>
+          prevEmails.map((mail) => (mail.id === mailId ? updatedMail : mail)),
         )
       })
       .catch((err) => showErrorMsg(`Couldn't update mail`))
   }
 
   function onRemoveMail(mailId) {
-    mailService
+    emailsService
       .remove(mailId)
       .then(() => {
-        setMails((prev) => prev.filter((mail) => mail.id !== mailId))
+        setEmails((prev) => prev.filter((mail) => mail.id !== mailId))
         showSuccessMsg(`mail ${mailId} removed`)
       })
       .catch((err) => showErrorMsg(`Couldn't remove ${mailId}`))
   }
 
   function onClearFilter() {
-    setFilterBy(mailService.getDefaultFilter())
+    setFilterBy(emailsService.getDefaultFilter())
   }
 
-  if (!mails)
+  if (!emails)
     return (
       <h2>Loading...</h2>
       // <div className="loader">
       //   <img src="./assets/img/loader.svg" alt="A loader." />
       // </div>
     )
-  const unreadMailCount = mails.filter((mail) => (mail.isRead === false)).length
 
   return (
     <section className="mail-index">
@@ -80,11 +79,11 @@ export function MailIndex() {
         onClearFilter={onClearFilter}
       />
 
-      <MailLeftSideBar unreadMailCount={unreadMailCount} />
+      <MailLeftSideBar emails={emails} />
       <MailRightSideBar />
 
       <MailList
-        mails={mails}
+        emails={emails}
         onRemoveMail={onRemoveMail}
         onToggleRead={onToggleRead}
       />

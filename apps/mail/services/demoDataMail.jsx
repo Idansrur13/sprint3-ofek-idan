@@ -3,7 +3,7 @@ const now = Date.now()
 
 // A mail belongs to the inbox when it was sent TO the loggedinUser,
 // and to the sent folder when it was sent BY them (from === user email)
-export const demoMails = [
+export const demoEmails = [
     {
         id: 'e101',
         createdAt: 1551133930500,

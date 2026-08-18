@@ -1,11 +1,11 @@
 const { Link, useNavigate } = ReactRouterDOM
 import { MailPreview } from "./MailPreview.jsx"
 
-export function MailList({ mails, onRemoveMail, onToggleRead }) {
+export function MailList({ emails, onRemoveMail, onToggleRead }) {
   const navigate = useNavigate()
   return (
     <ul className="mail-list">
-      {mails.map((mail) => (
+      {emails.map((mail) => (
         <li
           key={mail.id}
           onClick={() => {

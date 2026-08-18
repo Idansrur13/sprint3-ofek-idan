@@ -1,11 +1,11 @@
 import { utilService } from "../../../services/util.service.js"
 import { storageService } from "../../../services/async-storage.service.js"
-import { demoMails } from "./demoDataMail.jsx"
+import { demoEmails } from "./demoDataMail.jsx"
 
 const MAIL_KEY = "mailDB"
 _createMails()
 
-export const mailService = {
+export const emailsService = {
   testFunction,
   query,
   get,
@@ -29,17 +29,8 @@ function query(filterBy = {}) {
           regExp.test(mail.from) ||
           regExp.test(mail.subject) ||
           regExp.test(mail.body),
-      ) // mails = mails.filter(
-      //   (mail) =>
-      //     mail.subject.includes(filterBy.txt) ||
-      //     mail.from.includes(filterBy.txt) ||
-      //     mail.to.includes(filterBy.txt),
-      // )
+      )
     }
-
-    // if (filterBy.minSpeed) {
-    //   mails = mails.filter((mail) => mail.maxSpeed >= filterBy.minSpeed)
-    // }
 
     return mails
   })
@@ -70,7 +61,7 @@ function save(mail) {
 
 function getEmptyMail(
   subject = "",
-  to="someone",
+  to = "someone",
   from = "",
   body = "",
   createdAt = Date.now(),
@@ -105,7 +96,7 @@ function _createMails() {
       "You have won a brand new car!!!",
       "Thanks! Fixed the trash folder",
     ]
-    mails.push(...demoMails)
+    mails.push(...demoEmails)
     for (let i = 0; i < 6; i++) {
       const from =
         recipients[utilService.getRandomIntInclusive(0, recipients.length - 1)]
@@ -119,14 +110,7 @@ function _createMails() {
   }
 }
 
-function _createMail(
-  subject,
-  to ,
-  from ,
-  body ,
-  createdAt ,
-  isRead,
-) {
+function _createMail(subject, to, from, body, createdAt, isRead) {
   const mail = getEmptyMail(subject, to, from, body, createdAt, isRead)
   mail.id = utilService.makeId()
   return mail
