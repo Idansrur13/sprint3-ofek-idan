@@ -26,12 +26,12 @@ export function MailLeftSideBar({ emails }) {
   return (
     <section className="mail-left">
       <div className="compose">
-          <button>
-        <Link to="/mail/edit">
+          <Link to="/mail/edit">
+        <button>
             {icons.compose}
-        </Link>
             <span>Compose</span>
-          </button>
+        </button>
+          </Link>
       </div>
       <button className="sent">
         {icons.sent}
