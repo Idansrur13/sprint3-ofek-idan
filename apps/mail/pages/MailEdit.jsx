@@ -25,7 +25,7 @@ export function MailEdit() {
     setmail((prev) => ({ ...prev, [name]: value }))
   }
 
-  function onSavemail(ev) {
+  function onSaveMail(ev) {
     ev.preventDefault()
 
     mailService.save(mail).then((mail) => {
@@ -35,7 +35,7 @@ export function MailEdit() {
   }
 
   return (
-    <form className="mail-edit" onSubmit={onSavemail}>
+    <form className="mail-edit" onSubmit={onSaveMail}>
       <label htmlFor="subject">subject:</label>
       <input
         type="text"
@@ -56,7 +56,7 @@ export function MailEdit() {
         onChange={handleChange}
       />
 
-      <div className="mail-actions">
+      <div className="mail-save">
         <button>Save</button>
         <Link to="/mail">
           <button type="button">Cancel</button>

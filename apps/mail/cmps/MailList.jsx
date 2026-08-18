@@ -8,7 +8,7 @@ export function MailList({ mails, onRemoveMail }) {
         <li key={mail.id}>
           <MailPreview mail={mail} />
 
-          <div className="actions">
+          <div className="mail-actions">
             <Link to={`/mail/${mail.id}`}>
               <button className="btn-details">Details</button>
             </Link>

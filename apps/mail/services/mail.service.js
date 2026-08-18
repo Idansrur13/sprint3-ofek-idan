@@ -51,7 +51,7 @@ function testFunction() {
 
 function get(mailId) {
   return storageService.get(MAIL_KEY, mailId).then((mail) => {
-    mail = _setNextPrevmailId(mail)
+    mail = _setNextPrevMailId(mail)
     return mail
   })
 }
@@ -136,15 +136,15 @@ function _createmail(
   return mail
 }
 
-function _setNextPrevmailId(mail) {
+function _setNextPrevMailId(mail) {
   return storageService.query(MAIL_KEY).then((mails) => {
     const mailIdx = mails.findIndex((currmail) => currmail.id === mail.id)
-    const nextmail = mails[mailIdx + 1] ? mails[mailIdx + 1] : mails[0]
-    const prevmail = mails[mailIdx - 1]
+    const nextMail = mails[mailIdx + 1] ? mails[mailIdx + 1] : mails[0]
+    const prevMail = mails[mailIdx - 1]
       ? mails[mailIdx - 1]
       : mails[mails.length - 1]
-    mail.nextmailId = nextmail.id
-    mail.prevmailId = prevmail.id
+    mail.nextMailId = nextMail.id
+    mail.prevMailId = prevMail.id
     return mail
   })
 }

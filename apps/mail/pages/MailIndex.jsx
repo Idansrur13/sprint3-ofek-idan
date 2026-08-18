@@ -71,7 +71,6 @@ export function MailIndex() {
       <MailLeftSideBar />
       <MailRightSideBar />
 
-    
       <MailList mails={mails} onRemoveMail={onRemoveMail} />
       <footer>foooter</footer>
     </section>
