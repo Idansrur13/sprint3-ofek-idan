@@ -105,7 +105,6 @@
   font-size: 18px;
   font-weight: 600;
   width: 200px;
-  border: 1px solid #202124;
   overflow: hidden;
   flex-shrink: 0;
 
@@ -116,7 +115,7 @@
 
 .mail-row:hover {
   box-shadow: 0px 1px 8px rgb(215, 215, 215);
-  border: .5px solid rgb(215, 215, 215);
+  border: .2px solid rgb(215, 215, 215);
 
 }
 
