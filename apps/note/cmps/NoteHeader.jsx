@@ -1,4 +1,5 @@
 const { useState } = React
+import { _makeId } from '../../../services/async-storage.service.js'
 import {
   ImageIcon,
   X,
@@ -9,7 +10,7 @@ import {
 
 function getEmptyNote() {
   return {
-    id: 'n130',
+    id: _makeId(),
     createdAt: 1112623,
     type: 'NoteTxt',
     isPinned: false,
@@ -41,8 +42,10 @@ export function NoteHeader({ addNote }) {
   }
 
   const submitForm = (ev) => {
-    console.log(ev.target.value)
-    addNote(ev.target.value)
+    ev.preventDefault()
+
+    addNote(newNote)
+    cancelNote()
     return
   }
 
@@ -76,7 +79,6 @@ export function NoteHeader({ addNote }) {
             backgroundColor: newNote.style.backgroundColor || '#ffff',
           }}
         >
-          {' '}
           <div style={{ display: 'flex', gap: 4 }}>
             <input
               type='text'
@@ -87,13 +89,13 @@ export function NoteHeader({ addNote }) {
               className='text-center note-title'
             />
 
-            <button onClick={() => cancelNote()}>
+            <button onClick={() => cancelNote()} type='button'>
               <MicIcon />
             </button>
             {/* <button onClick={() => {}}>
             <YouTubeIcon />
           </button> */}
-            <button>
+            <button type='button'>
               <ImageIcon />
             </button>
             <label htmlFor='color' className='icon-botton'>
@@ -108,7 +110,7 @@ export function NoteHeader({ addNote }) {
               value={newNote.style.backgroundColor}
             />
 
-            <button onClick={() => cancelNote()}>
+            <button onClick={() => cancelNote()} type='button'>
               <X />
             </button>
           </div>
@@ -134,7 +136,7 @@ export function NoteHeader({ addNote }) {
               ))}
 
               <div className='header-action'>
-                <button>+</button>
+                <button type='button'>+</button>
 
                 <input
                   type='text'
@@ -146,7 +148,7 @@ export function NoteHeader({ addNote }) {
                   }
                 />
               </div>
-              <button htmlFor='color' className='save-note-btn'>
+              <button htmlFor='color' className='save-note-btn' type='submit'>
                 save
               </button>
             </div>

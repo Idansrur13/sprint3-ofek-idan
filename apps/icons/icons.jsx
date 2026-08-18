@@ -27,7 +27,7 @@ export const KeepIcon = () => {
       alt='Google Keep (2026)'
       width='22'
       height='22'
-      classNameName='icon'
+      className='icon-botton'
     />
   )
 }
@@ -39,7 +39,7 @@ export const MailIcon = () => {
       alt='Gmail (2026)'
       width='22'
       height='22'
-      classNameName='icon'
+      className='icon-botton'
     />
   )
 }

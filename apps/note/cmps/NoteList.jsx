@@ -1,12 +1,15 @@
 const { useState } = React
 import { NoteCard } from './NoteCard.jsx'
 
-export function NoteList({ notes, setNoteTodoIsDone, setPinedNote }) {
-  console.log('notess', notes)
+export function NoteList({
+  notes,
+  setNoteTodoIsDone,
+  setPinedNote,
+  deleteNote,
+}) {
   if (!notes || notes.length <= 0) return
   return (
     <div>
-      <h3 className='note-section-title'>pined</h3>
       <div className='node-list '>
         {notes.map((n, i) => {
           return (
@@ -15,6 +18,7 @@ export function NoteList({ notes, setNoteTodoIsDone, setPinedNote }) {
               setNoteTodoIsDone={setNoteTodoIsDone}
               setPinedNote={setPinedNote}
               key={n.id}
+              deleteNote={deleteNote}
             />
           )
         })}

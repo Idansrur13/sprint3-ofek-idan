@@ -15,7 +15,7 @@ export function AppHeader() {
   )
   const [openNavBar, setOpenNavBar] = useState(false)
   const { Icon, label } = APP_BRANDS[brandKey] || DEFAULT_BRAND
-  console.log(pathname, 'patttha nameeeeeeeeeeee')
+
   return (
     <header className='app-header '>
       <div onClick={() => setOpenNavBar((v) => !v)}>
