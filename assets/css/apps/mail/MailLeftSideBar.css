@@ -1,9 +1,22 @@
+.mail-left {
+  grid-area: left;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
 
+  .compose {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-inline-start: 8px;
+    padding: 1em;
+    border-radius: 15%;
+  }
 
-.mail-left{
-    grid-area: left;
-    z-index: 1;
-    /* display: flex;
-    flex-direction: row; */
-
+  .sent {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    padding-inline-end: 150px;
+  }
 }

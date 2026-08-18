@@ -25,10 +25,16 @@ export function MailLeftSideBar({ emails }) {
 
   return (
     <section className="mail-left">
-      <Link to="/mail/edit">
-        <button>{icons.compose}</button>
-      </Link>
-      <button>{icons.sent}</button>
+        <Link to="/mail/edit">
+          <button className="compose">
+            {icons.compose}
+            <span>Compose</span>
+          </button>
+        </Link>
+      <button className="sent">
+        {icons.sent}
+        <span>Sent</span>
+      </button>
       <div>Unread Mails:{unreadMailCount}</div>
     </section>
   )
