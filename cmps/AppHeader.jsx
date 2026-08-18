@@ -1,12 +1,12 @@
 const { Link, NavLink, useLocation } = ReactRouterDOM
 const { useState } = React
-import { Menu, MailIcon, KeepIcon } from "../apps/icons/icons.jsx"
+import { Menu, MailIcon, KeepIcon } from '../apps/icons/icons.jsx'
 
 const APP_BRANDS = {
-  "/mail": { Icon: MailIcon, label: "GMAIL" },
-  "/note": { Icon: KeepIcon, label: "KEEP" },
+  '/mail': { Icon: MailIcon, label: 'GMAIL' },
+  '/note': { Icon: KeepIcon, label: 'KEEP' },
 }
-const DEFAULT_BRAND = { Icon: KeepIcon, label: "APPSUS" }
+const DEFAULT_BRAND = { Icon: KeepIcon, label: 'APPSUS' }
 
 export function AppHeader() {
   const { pathname } = useLocation()
@@ -15,22 +15,22 @@ export function AppHeader() {
   )
   const [openNavBar, setOpenNavBar] = useState(false)
   const { Icon, label } = APP_BRANDS[brandKey] || DEFAULT_BRAND
-  console.log(pathname, "patttha nameeeeeeeeeeee")
+  console.log(pathname, 'patttha nameeeeeeeeeeee')
   return (
-    <header className="app-header ">
+    <header className='app-header '>
       <div onClick={() => setOpenNavBar((v) => !v)}>
         <Menu />
       </div>
-      <Link to="/">
+      <Link to='/'>
         <div
-          style={{ display: "flex", height: 28, gap: 4, alignItems: "center" }}
+          style={{ display: 'flex', height: 28, gap: 4, alignItems: 'center' }}
         >
           <Icon />
           <h4>{label}</h4>
         </div>
       </Link>
       {openNavBar && (
-        <div style={{ position: "absolute", top: 40, zIndex: 4 }}>
+        <div style={{ position: 'absolute', top: 40, zIndex: 4 }}>
           <NavBar label={label} />
         </div>
       )}
@@ -40,14 +40,14 @@ export function AppHeader() {
 
 function NavBar({ label }) {
   return (
-    <nav className="nav-div">
-      <NavLink to="/"> Home</NavLink>
-      <NavLink to="/about">About</NavLink>
-      <NavLink to="/mail">
+    <nav className='nav-div'>
+      <NavLink to='/'> Home</NavLink>
+      <NavLink to='/about'>About</NavLink>
+      <NavLink to='/mail'>
         <MailIcon /> Mail
       </NavLink>
-      <NavLink to="/note">
-        {" "}
+      <NavLink to='/note'>
+        {' '}
         <KeepIcon />
         Note
       </NavLink>

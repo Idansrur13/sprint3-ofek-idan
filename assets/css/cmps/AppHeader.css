@@ -14,3 +14,15 @@ nav a.active {
     font-weight: bold;
     text-decoration: overline;
 }
+
+.icon {
+    height: 24px;
+    width: 24px;
+}
+
+.nav-div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #fff;
+    border-radius: 10px;
+}
