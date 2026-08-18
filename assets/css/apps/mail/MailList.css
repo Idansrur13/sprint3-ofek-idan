@@ -63,6 +63,8 @@
   padding-inline-start: 2px;
   width: min-content;
   overflow: hidden;
+    flex-shrink: 100;
+
 }
 
 .mail-sender {
