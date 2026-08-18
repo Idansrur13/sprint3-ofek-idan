@@ -83,7 +83,7 @@
 .mail-actions {
   display: flex;
   justify-self: end;
-  padding-inline: 8px;
+  padding-inline: 50px;
   margin-left: auto;
 }
 
