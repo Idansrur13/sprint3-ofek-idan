@@ -47,9 +47,12 @@
 
   .mail-modifiers {
     display: flex;
+    align-items: center;
     gap: 8px;
-      padding-inline-end: 2px;
+    padding-inline-end: 2px;
     .important {
+      display: flex;
+      align-items: center;
       padding-inline-end: 8px;
     }
   }
