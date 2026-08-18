@@ -1,33 +1,27 @@
 .mail-list {
+
+  opacity: 0.7;
   /* display: grid;
     grid-template-rows: 1rem ; */
   /* flex-direction: column; */
-  grid-area: main;
-  background-color: #f2f2f2;
 
-  border: 1px solid black;
-  margin: 0;
+  grid-area: main;
+  background-color: #ffffff;
+
+  /* border: 1px solid black; */
+  margin-top: 8px;
+  border-radius: 10px;
+
   padding: 0;
   list-style: none;
 
   li {
-    section {
-      display: grid;
-      place-items: center start;
-      position: relative;
-      grid-auto-flow: column;
-      grid-template-columns: 2fr 7fr 1fr;
-      min-height: 2.5em;
-      border-block-end: 1px solid black;
-      min-width: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      /* ^^ doesnt work? */
-    }
+
+
+
+
     h3 {
       display: flex;
-      align-items: center;
       gap: 8px;
       font-weight: bold;
 
@@ -48,18 +42,109 @@
       display: flex;
       flex-direction: row;
     }
+
     /* p {
         margin: 0;
         padding: 0;
 
       }  */
-    .send-time {
-      position: absolute;
-      right: 2rem;
-    }
+
   }
+
   /* width: 100%;
     height: 100%; */
 }
 
 /* move to header to different css page  */
+
+
+.mail-row {
+  display: flex;
+  position: relative;
+  height: 20px;
+
+  /* גובה התוכן בלבד */
+  padding: 10px 0;
+  /* הריווח האנכי מגיע מה-padding */
+  box-sizing: content-box;
+  cursor: pointer;
+  font-size: 14px;
+  color: #202124;
+
+  box-shadow: inset 0 -1px 0 0 rgba(100, 121, 143, .12);
+  text-align: start;
+  align-items: center;
+
+}
+
+.mail-row .unread:vddd {
+  background-color: #fff;
+}
+
+.mail-row span {
+  display: block;
+  margin-inline-start: 4px;
+  /* border: 1px solid #202124; */
+  /* white-space: inherit; */
+  /* width: 260px; */
+  overflow: hidden;
+
+  white-space: nowrap;
+
+
+}
+
+.mail-body {
+  width: min-content;
+  overflow: hidden;
+
+}
+
+
+.mail-sender {
+  font-size: 18px;
+  font-weight: 600;
+  width: 200px;
+  border: 1px solid #202124;
+  overflow: hidden;
+  flex-shrink: 0;
+
+
+
+
+}
+
+.mail-row:hover {
+  box-shadow: 0px 1px 8px rgb(215, 215, 215);
+  border: .5px solid rgb(215, 215, 215);
+
+}
+
+
+.mail-actions {
+  /* position: absolute;
+  right: 0; */
+
+  display: flex;
+
+  /* justify-content: end; */
+  /* border: 1px solid #643737; */
+
+  justify-self: end;
+  background-color: #fff;
+  padding-inline: 8px;
+
+  margin-left: auto;
+
+
+}
+
+.btn-row-mail {
+  gap: 8px;
+  padding: 4px;
+  align-self: flex-end;
+  justify-self: end;
+  display: flex;
+
+
+}

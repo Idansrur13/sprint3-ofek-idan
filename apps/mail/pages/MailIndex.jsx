@@ -1,18 +1,18 @@
 const { useState, useEffect } = React
 const { Link, useSearchParams } = ReactRouterDOM
-import { demoEmails } from "../services/demoDataMail.jsx"
-import { MailList } from "../cmps/MailList.jsx"
-import { emailsService } from "../services/mail.service.js"
-import { MailFilter } from "../cmps/MailFilter.jsx"
-import { MailHeader } from "../cmps/MailHeader.jsx"
+import { demoEmails } from '../services/demoDataMail.jsx'
+import { MailList } from '../cmps/MailList.jsx'
+import { emailsService } from '../services/mail.service.js'
+import { MailFilter } from '../cmps/MailFilter.jsx'
+import { MailHeader } from '../cmps/MailHeader.jsx'
 import {
   showErrorMsg,
   showSuccessMsg,
-} from "../../../services/event-bus.service.js"
-import { utilService } from "../../../services/util.service.js"
-import { useEffectUpdate } from "../custom-hooks/useEffectUpdate.js"
-import { MailRightSideBar } from "../cmps/MailRightSideBar.jsx"
-import { MailLeftSideBar } from "../cmps/MailLeftSideBar.jsx"
+} from '../../../services/event-bus.service.js'
+import { utilService } from '../../../services/util.service.js'
+import { useEffectUpdate } from '../custom-hooks/useEffectUpdate.js'
+import { MailRightSideBar } from '../cmps/MailRightSideBar.jsx'
+import { MailLeftSideBar } from '../cmps/MailLeftSideBar.jsx'
 
 export function MailIndex() {
   const [emails, setEmails] = useState(null)
@@ -30,7 +30,7 @@ export function MailIndex() {
 
   function loademails() {
     emailsService.query(filterBy).then((emails) => {
-      console.log("emails from storage:", emails)
+      console.log('emails from storage:', emails)
       setEmails(emails)
     })
   }
@@ -72,7 +72,13 @@ export function MailIndex() {
     )
 
   return (
-    <section className="mail-index">
+    <section className='mail-index'>
+      <div style={{ position: 'fixed', height: '100%' }}>
+        <img
+          src='https://ssl.gstatic.com/ui/v1/icons/mail/themes/beach2/bg_sun_1680x1050.jpg'
+          alt=''
+        />
+      </div>
       <MailHeader
         filterBy={filterBy}
         onSetFilterBy={setFilterBy}

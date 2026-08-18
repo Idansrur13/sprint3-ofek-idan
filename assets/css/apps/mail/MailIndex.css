@@ -1,5 +1,7 @@
 .mail-index {
   /* position: relative; */
+  background-color: rgb(248, 250, 253);
+
   display: grid;
   grid-template-columns: 1fr 80vw 1fr;
   grid-template-rows: 3rem auto 1rem;
@@ -18,5 +20,6 @@
     padding-block-end: 2em;
     /* justify-content: stretch; */
     background-color: lightcoral;
+
   }
 }
