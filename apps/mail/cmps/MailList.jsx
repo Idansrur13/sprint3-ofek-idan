@@ -3,7 +3,6 @@ import { MailPreview } from "./MailPreview.jsx"
 
 export function MailList({ mails, onRemoveMail, onToggleRead }) {
   const navigate = useNavigate()
-
   return (
     <ul className="mail-list">
       {mails.map((mail) => (

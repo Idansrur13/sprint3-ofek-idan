@@ -39,7 +39,7 @@ export function MailIndex() {
     const mail = mails.find((mail) => mail.id === mailId)
     const updatedMail = { ...mail, isRead: mailRead ? true : !mail.isRead }
 
-     mailService
+    mailService
       .save(updatedMail)
       .then(() => {
         setMails((prevMails) =>
@@ -70,6 +70,7 @@ export function MailIndex() {
       //   <img src="./assets/img/loader.svg" alt="A loader." />
       // </div>
     )
+  const unreadMailCount = mails.filter((mail) => (mail.isRead === false)).length
 
   return (
     <section className="mail-index">
@@ -79,7 +80,7 @@ export function MailIndex() {
         onClearFilter={onClearFilter}
       />
 
-      <MailLeftSideBar />
+      <MailLeftSideBar unreadMailCount={unreadMailCount} />
       <MailRightSideBar />
 
       <MailList
