@@ -5,18 +5,37 @@
   flex-direction: column;
 
   .compose {
-    display: flex;
-    align-items: center;
-    gap: 1em;
     margin-inline-start: 8px;
-    padding: 1em;
-    border-radius: 15%;
-  }
+    button {
+      display: flex;
+      place-items: center center;
 
+      gap: 1em;
+      padding: 0.8em 2em 0.8em;
+      border-radius: 12%;
+    }
+  }
   .sent {
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    padding-inline-start: 2rem;
     gap: 1em;
-    padding-inline-end: 150px;
+    margin-top: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    :hover {
+      border: 1px solid black;
+    }
+  }
+
+  .unread-emails {
+    display: flex;
+    justify-content: start;
+    padding-inline-start: 2rem;
+
+    margin-top: 8px;
+    :hover {
+      border: 1px solid black;
+    }
   }
 }

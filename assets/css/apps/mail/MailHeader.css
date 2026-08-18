@@ -3,7 +3,6 @@
   grid-area: header;
   display: flex;
   align-items: center;
-  background-color: lightgray;
   .mail-menu {
     margin-inline-start: 1rem;
     margin-inline-end: 20px;
@@ -14,9 +13,56 @@
 
   .profile-icons {
     position: absolute;
-    right: 100px;
+    right: 20px;
     display: flex;
     gap: 1rem;
     font-size: 1.5rem;
+  }
+
+  .mail-filter {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    padding: 8px 16px;
+    background-color: #f1f3f4; /* Light gray background */
+    border: 2px solid transparent;
+    border-radius: 24px; /* Pill shape */
+    transition: all 0.3s ease;
+
+    #search-input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 16px;
+      color: #202124;
+    }
+    #search-input::-webkit-search-decoration,
+    #search-input::-webkit-search-cancel-button,
+    #search-input::-webkit-search-results-button,
+    #search-input::-webkit-search-results-decoration {
+      display: none;
+    }
+    #search-input::placeholder {
+      color: #80868b;
+    }
+    .search-container.is-focused {
+      background-color: #ffffff;
+      border-color: #1a73e8; /* Blue border focus effect */
+      box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+    }
+    #clear-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #80868b;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+    #clear-btn:hover {
+      color: #202124;
+    }
   }
 }

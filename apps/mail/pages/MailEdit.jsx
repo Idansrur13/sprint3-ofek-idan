@@ -1,14 +1,14 @@
 const { useEffect, useState } = React
 const { Link, useParams, useNavigate } = ReactRouterDOM
 
-import { mailService } from "../services/mail.service.js"
+import { emailsService } from "../services/mail.service.js"
 import {
   eventBus,
   showSuccessMsg,
 } from "../../../services/event-bus.service.js"
 
 export function MailEdit() {
-  const [mail, setmail] = useState(mailService.getEmptyMail())
+  const [mail, setmail] = useState(emailsService.getEmptyMail())
   const [msg, setMsg] = useState(null)
 
   const params = useParams()
@@ -16,7 +16,7 @@ export function MailEdit() {
 
   useEffect(() => {
     if (params.id) {
-      mailService.get(params.id).then(setmail)
+      emailsService.get(params.id).then(setmail)
     }
   }, [])
 
@@ -28,7 +28,7 @@ export function MailEdit() {
   function onSaveMail(ev) {
     ev.preventDefault()
 
-    mailService.save(mail).then((mail) => {
+    emailsService.save(mail).then((mail) => {
       showSuccessMsg(`mail ${mail.id} saved`)
       navigate("/mail")
     })
