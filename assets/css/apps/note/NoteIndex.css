@@ -1,42 +1,172 @@
- /* note index */
+/* note index */
 
- .note-page {
-     padding: 20px;
- }
+.note-layout {
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: 110px 1fr;
+    align-items: start;
 
- .note-header {
-     padding-top: 10px;
-     flex-direction: column;
+    transition: grid-template-columns .25s ease-in-out;
+}
 
-     display: flex;
+.note-layout:has(.note-nav:hover) {
+    grid-template-columns: 200px 1fr;
+}
 
-     position: relative;
-     justify-content: center;
-     align-items: center;
+.note-nav {
+    position: sticky;
+    top: 0;
+    min-height: 100dvh;
 
- }
-
- .header-action {
-     display: flex;
-     justify-content: space-evenly;
-
- }
-
- .note-search {
-     display: flex;
-
-     flex-direction: column;
-
-     border-radius: 10px;
-     border: 1px solid #c8c8c8;
-     overflow: hidden;
-     padding: 8px;
- }
-
- .note-search input {
-     width: 300px;
-     border: 0;
-     outline: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 8px 12px 0;
 
 
- }
+}
+
+.note-nav-item {
+    overflow: hidden;
+
+    padding: 10px 16px;
+    border-radius: 0 24px 24px 0;
+
+    font-size: 14px;
+    color: #3c4043;
+
+    cursor: pointer;
+    transition: background-color .5s ease;
+}
+
+
+
+.note-nav-item:hover {
+    background-color: rgba(0, 0, 0, .06);
+}
+
+.note-nav-item.active {
+    background-color: #feefc3;
+
+}
+
+@media (max-width: 700px) {
+    .note-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .note-nav {
+        position: static;
+        min-height: auto;
+        flex-direction: row;
+        padding: 8px 12px;
+        border-inline-end: 0;
+        border-block-end: 1px solid #e0e0e0;
+    }
+
+    .note-nav-item {
+        border-radius: 24px;
+    }
+}
+
+.note-page {
+    padding: 24px;
+}
+
+.note-header {
+    padding-top: 24px;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-search {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    width: min(600px, 92vw);
+    padding: 12px 16px;
+    transition: height .15s ease;
+
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(182, 182, 182, 0.478);
+    transition: box-shadow .2s ease-in-out;
+}
+
+.note-search:hover,
+.note-search:focus-within {
+    box-shadow: 0 2px 8px rgba(86, 86, 86, 0.309);
+}
+
+.note-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+
+    color: #3c3b3b;
+
+}
+
+.note-title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.note-search input::placeholder {
+    color: #9a9a9a;
+}
+
+.note-search form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px solid #e7e6e6;
+    padding-top: 8px;
+}
+
+
+
+.header-action {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    padding: 2px;
+    color: #5f6368;
+}
+
+i,
+.header-action label {
+    cursor: pointer;
+
+    padding: 6px;
+    border-radius: 50%;
+    transition: background-color .15s ease;
+}
+
+i:hover,
+.header-action label:hover {
+    background-color: rgba(0, 0, 0, .07);
+}
+
+.save-note-btn {
+    align-self: flex-end;
+    border: 0;
+    background-color: #1a73e8;
+    color: #fff;
+
+    padding: 8px 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.save-note-btn:hover {
+    background-color: #1558c0;
+}

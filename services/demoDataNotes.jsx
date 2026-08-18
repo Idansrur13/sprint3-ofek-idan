@@ -41,6 +41,8 @@ export const notes = [
     id: 'n105',
     createdAt: 1112226,
     type: 'NoteImg',
+    removedAt: 1112626,
+
     isPinned: false,
     style: { backgroundColor: '#ffe8e8' },
     info: {
@@ -53,6 +55,7 @@ export const notes = [
     createdAt: 1112227,
     type: 'NoteTodos',
     isPinned: false,
+    removedAt: 1112427,
     style: { backgroundColor: '#d3f0ff' },
     info: {
       title: 'Shopping list',

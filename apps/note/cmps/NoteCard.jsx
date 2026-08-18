@@ -1,52 +1,140 @@
+import { TrashIcon, LayersIcon, PancelIcon } from '../../icons/icons.jsx'
+
 const { useState } = React
 
-export function NoteCard({ note, setNoteTodoIsDone }) {
-  const [selectedNoteId, setSelctedNoteId] = useState(false)
+export function NoteImg({ url = null }) {
+  if (!url) return
+  return (
+    <div className='img-note'>
+      <img src={url} alt='note' />
+    </div>
+  )
+}
+
+function getYoutubeId(url) {
+  const match = url.match(
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/
+  )
+  return match ? match[1] : null
+}
+
+export function NoteVideo({ info = {}, isEditMode, onChangeInfo }) {
+  const url = info.url
+  if (isEditMode) {
+    return (
+      <input
+        type='url'
+        name='url'
+        placeholder='Video url'
+        value={url || ''}
+        onClick={(ev) => ev.stopPropagation()}
+        onChange={(ev) => onChangeInfo({ ...info, url: ev.target.value })}
+      />
+    )
+  }
+
+  if (!url) return
+  const youtubeId = getYoutubeId(url)
+  return (
+    <div className='video-note' onClick={(ev) => ev.stopPropagation()}>
+      {youtubeId ? (
+        <iframe
+          src={`https://www.youtube.com/embed/${youtubeId}`}
+          title={info.title || 'note video'}
+          frameBorder='0'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture'
+          allowFullScreen
+        />
+      ) : (
+        <video src={url} controls />
+      )}
+    </div>
+  )
+}
+export function NoteTodos({ todos = [], noteId, setNoteTodoIsDone }) {
+  if (!todos) return
+  return (
+    <div>
+      {todos.map((t, i) => {
+        return (
+          <div
+            onClick={(e) => e.stopPropagation()}
+            key={i}
+            className='todo-line'
+          >
+            <label htmlFor={t.txt}>{t.txt}</label>
+            <input
+              type='checkbox'
+              id={t.txt}
+              name={t.txt}
+              checked={!!t.isDone}
+              onChange={(e) => {
+                setNoteTodoIsDone({
+                  noteId,
+                  todoIdx: i,
+                  isDone: e.target.checked,
+                })
+              }}
+            />
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+export function NoteTxt({ txt = null }) {
+  if (!txt) return
+  return <p className='nite-p'>{txt}</p>
+}
+
+export function NoteCard({
+  note,
+  setNoteTodoIsDone,
+  setPinedNote,
+  deleteNote,
+}) {
   const info = note.info
-  console.log('selte', selectedNoteId)
+
+  console.log('selte', note.isPinned)
   return (
     <div
       className='card-note'
-      onClick={(e) => setSelctedNoteId((v) => !v)}
+      onClick={() => setPinedNote(note.id, !note.isPinned)}
       style={{ backgroundColor: note.style.backgroundColor || '#0d0' }}
     >
-      {selectedNoteId && (
-        <div className='check-note'>
-          {selectedNoteId}
-          <button>
-            <i className='fa-regular fa-circle-check'></i>
-          </button>
-        </div>
-      )}
-      <p className='nite-title'>{info.title}</p>
-      <p className='nite-p'>{info.txt}</p>
+      <div>
+        <p className='note-title ' style={{ margin: 0 }}>
+          {info.title}
+        </p>
+        {note.isPinned && (
+          <div className='check-note'>
+            {note.isPinned}
+            <i className='fa-solid fa-map-pin'></i>{' '}
+          </div>
+        )}
+      </div>
 
-      {info.url && (
-        <div className='img-note'>
-          <img src={info.url} alt='' />
-        </div>
-      )}
-      {info.todos &&
-        info.todos.map((t) => {
-          return (
-            <div
-              onClick={(e) => {
-                // e.preventDefault()
-              }}
-            >
-              <label htmlFor={t.txt}>{t.txt}</label>
-              <input
-                type='checkbox'
-                id={t.txt}
-                name={t.txt}
-                value={t.isDone}
-                onChange={(e) => {
-                  setNoteTodoIsDone({ noteId: t.id, idDone: e.target.value })
-                }}
-              />
-            </div>
-          )
-        })}
+      <NoteTxt txt={info.txt} />
+      <NoteImg url={info.url} />
+      <NoteVideo video={note.video} />
+      <NoteTodos
+        todos={info.todos}
+        setNoteTodoIsDone={setNoteTodoIsDone}
+        noteId={note.id}
+      />
+
+      <div className='note-action' onClick={(ev) => ev.stopPropagation()}>
+        <button onClick={() => deleteNote(note.id)}>
+          <TrashIcon />
+        </button>
+        <button>
+          <LayersIcon />
+        </button>
+        <button>
+          <PancelIcon />
+        </button>
+      </div>
     </div>
   )
 }

@@ -1,8 +1,10 @@
 .app-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+    gap: 4px;
     padding: 1em;
     background: var(--bg1);
+    position: relative;
 }
 
 nav a {
@@ -11,6 +13,18 @@ nav a {
 
 nav a.active {
     color: var(--color1);
-    font-weight: bold;
-    text-decoration: overline;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #e6e4e4;
+}
+
+
+.icon {
+    height: 24px;
+    width: 24px;
 }

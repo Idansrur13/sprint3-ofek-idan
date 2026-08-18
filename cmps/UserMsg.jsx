@@ -1,8 +1,8 @@
 import { eventBusService } from '../services/event-bus.service.js'
+import { LongTxt } from './LongTxt.jsx'
 const { useState, useEffect, useRef } = React
 
 export function UserMsg() {
-
   const [msg, setMsg] = useState(null)
   const timeoutIdRef = useRef()
 
@@ -21,12 +21,11 @@ export function UserMsg() {
   function closeMsg() {
     setMsg(null)
   }
-  const className = (msg)? `${msg.type} open` : '' 
+  const className = msg ? `${msg.type} open` : ''
   return (
     <section className={`user-msg ${className}`}>
       <button onClick={closeMsg}>x</button>
-      {msg && msg.txt}
+      {msg && <LongTxt txt={msg.txt} length={20} />}
     </section>
   )
 }
-
