@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 import { useEffectUpdate } from "../custom-hooks/useEffectUpdate.js"
-import { mailService } from "../services/mail.service.js"
+import { emailsService } from "../services/mail.service.js"
 
 export function MailFilter({ filterBy, onSetFilterBy }) {
   const [filterByToEdit, setFilterByToEdit] = useState(filterBy)

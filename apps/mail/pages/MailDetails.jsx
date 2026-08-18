@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 const { Link, useParams } = ReactRouterDOM
 
-import { mailService } from "../services/mail.service.js"
+import { emailsService } from "../services/mail.service.js"
 
 export function MailDetails() {
   console.log("mailDetails")
@@ -9,7 +9,7 @@ export function MailDetails() {
   const params = useParams()
 
   useEffect(() => {
-    mailService.get(params.id).then(setMail)
+    emailsService.get(params.id).then(setMail)
   }, [params.id])
 
   console.log("mail is:", mail)
