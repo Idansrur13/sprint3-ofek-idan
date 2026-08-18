@@ -15,7 +15,6 @@ import { MailRightSideBar } from "../cmps/MailRightSideBar.jsx"
 import { MailLeftSideBar } from "../cmps/MailLeftSideBar.jsx"
 
 export function MailIndex() {
-
   const [mails, setMails] = useState(null)
   const [searchParams, setSearchParams] = useSearchParams()
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
@@ -36,11 +35,11 @@ export function MailIndex() {
     })
   }
 
-  function onToggleRead(mailId) {
+  function onToggleRead(mailId, mailRead) {
     const mail = mails.find((mail) => mail.id === mailId)
-    const updatedMail = { ...mail, isRead: !mail.isRead }
+    const updatedMail = { ...mail, isRead: mailRead ? true : !mail.isRead }
 
-    mailService
+     mailService
       .save(updatedMail)
       .then(() => {
         setMails((prevMails) =>
@@ -83,7 +82,11 @@ export function MailIndex() {
       <MailLeftSideBar />
       <MailRightSideBar />
 
-      <MailList mails={mails} onRemoveMail={onRemoveMail} onToggleRead={onToggleRead} />
+      <MailList
+        mails={mails}
+        onRemoveMail={onRemoveMail}
+        onToggleRead={onToggleRead}
+      />
       <footer>foooter</footer>
     </section>
   )

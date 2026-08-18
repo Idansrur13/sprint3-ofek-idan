@@ -7,7 +7,14 @@ export function MailList({ mails, onRemoveMail, onToggleRead }) {
   return (
     <ul className="mail-list">
       {mails.map((mail) => (
-        <li key={mail.id} onClick={() => navigate(`/mail/${mail.id}`)}>
+        <li
+          key={mail.id}
+          onClick={() => {
+            // onToggleRead(mail.id, true).then(() => {
+            navigate(`/mail/${mail.id}`)
+            // })
+          }}
+        >
           <MailPreview
             mail={mail}
             onRemoveMail={onRemoveMail}
