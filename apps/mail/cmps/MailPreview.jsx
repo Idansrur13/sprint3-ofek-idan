@@ -13,10 +13,11 @@ export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
       onMouseEnter={() => setOnHover(true)}
       onMouseLeave={() => setOnHover(false)}
     >
-      <input type="checkbox" />
-      <div className="icon-mail">{icons.star}</div>
-      <div className="icon-mail">{icons.important}</div>
-
+      <div className="mail-modifiers" onClick={(ev) => ev.stopPropagation()} >
+        <input type="checkbox" />
+        <div className="icon-mail">{icons.star}</div>
+        <div className="icon-mail">{icons.important}</div>
+      </div>
       <span className="mail-sender"> {mail.from}</span>
 
       <span className="mail-subject">{mail.subject}</span>

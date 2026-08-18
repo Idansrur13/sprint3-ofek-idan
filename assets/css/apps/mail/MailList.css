@@ -44,6 +44,11 @@
   &.mail-read {
     background-color: rgba(0, 0, 0, 0.09);
   }
+
+  .mail-modifiers{
+    display: flex;
+    gap: 8px;
+  }
 }
 
 .mail-row span {
