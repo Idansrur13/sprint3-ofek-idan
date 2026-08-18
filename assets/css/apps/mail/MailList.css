@@ -1,13 +1,8 @@
 .mail-list {
-  opacity: 0.7;
-  /* display: grid;
-    grid-template-rows: 1rem ; */
-  /* flex-direction: column; */
-
+  opacity: 0.8;
   grid-area: main;
   background-color: #ffffff;
 
-  /* border: 1px solid black; */
   margin-top: 8px;
   border-radius: 10px;
 
@@ -15,44 +10,29 @@
   list-style: none;
 
   li {
+    .mail-main {
+      display: flex;
+      flex-direction: row;
+    }
     .hollow-star {
       width: 16px;
       height: 14px;
       fill: none;
       stroke: rgb(32, 33, 36);
-      /* #ffd700; */
       stroke-width: 2;
       stroke-linejoin: round;
       display: inline-block;
       vertical-align: middle;
     }
-
-    .mail-main {
-      display: flex;
-      flex-direction: row;
-    }
-
-    /* p {
-        margin: 0;
-        padding: 0;
-
-      }  */
   }
-
-  /* width: 100%;
-    height: 100%; */
 }
-
-/* move to header to different css page  */
 
 .mail-row {
   display: flex;
   position: relative;
   height: 20px;
 
-  /* גובה התוכן בלבד */
   padding: 10px 0;
-  /* הריווח האנכי מגיע מה-padding */
   box-sizing: content-box;
   cursor: pointer;
   font-size: 14px;
@@ -61,24 +41,26 @@
   box-shadow: inset 0 -1px 0 0 rgba(100, 121, 143, 0.12);
   text-align: start;
   align-items: center;
-}
-
-.mail-row .unread:vddd {
-  background-color: #fff;
+  &.mail-read {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
 }
 
 .mail-row span {
   display: block;
   margin-inline-start: 4px;
-  /* border: 1px solid #202124; */
-  /* white-space: inherit; */
-  /* width: 260px; */
   overflow: hidden;
-
   white-space: nowrap;
 }
 
+.mail-subject {
+  /* background-color: pink; */
+  padding-inline-start: 30px;
+
+  padding-inline-end: 2px;
+}
 .mail-body {
+  padding-inline-start: 2px;
   width: min-content;
   overflow: hidden;
 }
@@ -97,18 +79,9 @@
 }
 
 .mail-actions {
-  /* position: absolute;
-  right: 0; */
-
   display: flex;
-
-  /* justify-content: end; */
-  /* border: 1px solid #643737; */
-
   justify-self: end;
-  background-color: #fff;
   padding-inline: 8px;
-
   margin-left: auto;
 }
 

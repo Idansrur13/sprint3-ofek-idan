@@ -1,34 +1,34 @@
 const { useState } = React
-import { utilService } from '../../../services/util.service.js'
-import { icons } from '../services/mail.icons.js'
+import { utilService } from "../../../services/util.service.js"
+import { icons } from "../services/mail.icons.js"
 
 export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
   const [onHover, setOnHover] = useState(false)
-  const IsReadIcon = mail.isRead ? icons.unreadMail : icons.readMail
+  const isRead = mail.isRead
+  const IsReadIcon = isRead ? icons.readMail : icons.unreadMail
 
   return (
     <div
-      className='mail-row'
+      className={` mail-row ${isRead ? "mail-read" : ""}  `}
       onMouseEnter={() => setOnHover(true)}
       onMouseLeave={() => setOnHover(false)}
     >
-      <input type='checkbox' />
-      <div className='icon-mail'>{icons.star}</div>
-      <div className='icon-mail'>{icons.important}</div>
+      <input type="checkbox" />
+      <div className="icon-mail">{icons.star}</div>
+      <div className="icon-mail">{icons.important}</div>
 
-      <span className='mail-sender'> {mail.from}</span>
+      <span className="mail-sender"> {mail.from}</span>
 
-      {/* <p>{mail.id}</p> */}
-      <span className='mail-subject'>{mail.subject}</span>
+      <span className="mail-subject">{mail.subject}</span>
 
-      <p>{` -   `} </p>
-      <span className='mail-body'>{mail.body}</span>
+      <p>{`-`} </p>
+      <span className="mail-body">{mail.body}</span>
 
-      <div className='mail-actions' onClick={(ev) => ev.stopPropagation()}>
+      <div className="mail-actions" onClick={(ev) => ev.stopPropagation()}>
         {onHover ? (
-          <div className='btn-row-mail '>
+          <div className="btn-row-mail ">
             <span
-              className='btn-remove'
+              className="btn-remove"
               onClick={(ev) => {
                 onRemoveMail(mail.id)
               }}
@@ -44,7 +44,7 @@ export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
             </span>
           </div>
         ) : (
-          <span className='send-time'>
+          <span className="send-time">
             {utilService.getTimeOfDay(mail.createdAt)}
             {/* ------
         {utilService.getMonthName(mail.createdAt)}{" "}
