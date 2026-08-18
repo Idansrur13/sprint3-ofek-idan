@@ -45,9 +45,13 @@
     background-color: rgba(0, 0, 0, 0.09);
   }
 
-  .mail-modifiers{
+  .mail-modifiers {
     display: flex;
     gap: 8px;
+      padding-inline-end: 2px;
+    .important {
+      padding-inline-end: 8px;
+    }
   }
 }
 
@@ -68,8 +72,7 @@
   padding-inline-start: 2px;
   width: min-content;
   overflow: hidden;
-    flex-shrink: 100;
-
+  flex-shrink: 100;
 }
 
 .mail-sender {

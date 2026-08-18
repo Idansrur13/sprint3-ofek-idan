@@ -15,8 +15,8 @@ export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
     >
       <div className="mail-modifiers" onClick={(ev) => ev.stopPropagation()} >
         <input type="checkbox" />
-        <div className="icon-mail">{icons.star}</div>
-        <div className="icon-mail">{icons.important}</div>
+        <div className="icon-mail  hollow-star">{icons.star}</div>
+        <div className="icon-mail important">{icons.important}</div>
       </div>
       <span className="mail-sender"> {mail.from}</span>
 
