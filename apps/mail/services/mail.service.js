@@ -70,12 +70,13 @@ function save(mail) {
 
 function getEmptyMail(
   subject = "",
-  to,
+  to="someone",
   from = "",
   body = "",
   createdAt = Date.now(),
+  isRead = Math.random() > 0.5 ? true : false,
 ) {
-  return { subject, to, from, body, createdAt }
+  return { subject, to, from, body, createdAt, isRead }
 }
 
 function getDefaultFilter(filterBy = { txt: "" }) {
@@ -112,26 +113,21 @@ function _createMails() {
         words[utilService.getRandomIntInclusive(0, words.length - 1)]
       const body =
         sentences[utilService.getRandomIntInclusive(0, sentences.length - 1)]
-      mails.push(_createmail(subject, "", from, body, Date.now()))
+      mails.push(_createMail(subject, "", from, body, Date.now()))
     }
     utilService.saveToStorage(MAIL_KEY, mails)
   }
 }
 
-function _createmail(
-  subject = "hi:D",
-  to = "",
-  from = "Me",
-  body = "",
-  createdAt = "",
+function _createMail(
+  subject,
+  to ,
+  from ,
+  body ,
+  createdAt ,
+  isRead,
 ) {
-  const mail = getEmptyMail(
-    subject,
-    to,
-    from,
-    body,
-    (createdAt = Date.now()),
-  )
+  const mail = getEmptyMail(subject, to, from, body, createdAt, isRead)
   mail.id = utilService.makeId()
   return mail
 }

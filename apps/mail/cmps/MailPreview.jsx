@@ -1,28 +1,35 @@
 import { utilService } from "../../../services/util.service.js"
 import { icons } from "../services/mail.icons.js"
-
+const { useState } = React
 export function MailPreview({ mail, onRemoveMail }) {
+  const [isRead, setIsRead] = useState(mail.isRead)
+
+  const IsReadIcon = mail.isRead ? icons.unreadMail : icons.readMail
+
+  // function onRemoveMail(mailId) {
+  //   mailService
+  //     .remove(mailId)
+  //     .then(() => {
+  //       setMails((prev) => prev.filter((mail) => mail.id !== mailId))
+  //       showSuccessMsg(`mail ${mailId} removed`)
+  //     })
+  //     .catch((err) => showErrorMsg(`Couldn't remove ${mailId}`))
+  // }
+  // function onChangeIsRead(mail.id) {
+  //  mail.isRead ===
+  //     .then(() => {
+  //       setMails((prev) => prev.filter((mail) => mail.id !== mailId))
+  //       showSuccessMsg(`mail ${mailId} removed`)
+  //     })
+  //     .catch((err) => showErrorMsg(`Couldn't remove ${mailId}`))
+  // }
   return (
     <section>
       <h3>
         <section className="select-icons"></section>
         <input type="checkbox" />
-        <svg class="hollow-star" viewBox="0 0 24 24">
-          <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
-        </svg>
-        <svg
-          xmlns="http://w3.org"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-          fill="none"
-          stroke="#444746"
-          stroke-width="2"
-          stroke-linejoin="round"
-          stroke-linecap="round"
-        >
-          <path d="M5.5 19l4.5-7-4.5-7H16c.8 0 1.6.5 2 1.2l3.5 5.8-3.5 5.8c-.4.7-1.2 1.2-2 1.2H5.5z" />
-        </svg>
+        {icons.star}
+        {icons.important}
         {mail.from}
       </h3>
       {/* <p>{mail.id}</p> */}
@@ -41,7 +48,21 @@ export function MailPreview({ mail, onRemoveMail }) {
         >
           {icons.trash}
         </span>
-        <span>{icons.unreadMail}</span>
+        <span
+          onClick={() => {
+            // console.log("mail.isRead:", mail.isRead)
+            console.log("isRead:", isRead)
+
+            setIsRead((prev) => {
+              !prev
+
+              // console.log("isRead:", isRead)
+            })
+            // console.log("mail.isRead:", mail.isRead)
+          }}
+        >
+          {IsReadIcon}
+        </span>
         <span className="send-time">
           {utilService.getTimeOfDay(mail.createdAt)}
           {/* ------

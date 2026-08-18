@@ -159,6 +159,23 @@ export const icons = {
       <circle cx="18" cy="6" r="3" fill="currentColor" stroke="none" />
     </svg>
   ),
+  readMail: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-mail-open-icon lucide-mail-open"
+    >
+      <path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z" />
+      <path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10" />
+    </svg>
+  ),
   Gemini: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -264,6 +281,26 @@ export const icons = {
     >
       <path d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
       <path d="M6 12h16" />
+    </svg>
+  ),
+  star: (
+    <svg class="hollow-star" viewBox="0 0 24 24">
+      <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+    </svg>
+  ),
+  important: (
+    <svg
+      xmlns="http://w3.org"
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+      stroke="#444746"
+      stroke-width="2"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+    >
+      <path d="M5.5 19l4.5-7-4.5-7H16c.8 0 1.6.5 2 1.2l3.5 5.8-3.5 5.8c-.4.7-1.2 1.2-2 1.2H5.5z" />
     </svg>
   ),
 }

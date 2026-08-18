@@ -42,7 +42,6 @@ export function MailIndex() {
       .remove(mailId)
       .then(() => {
         setMails((prev) => prev.filter((mail) => mail.id !== mailId))
-        onClearFilter()
         showSuccessMsg(`mail ${mailId} removed`)
       })
       .catch((err) => showErrorMsg(`Couldn't remove ${mailId}`))
