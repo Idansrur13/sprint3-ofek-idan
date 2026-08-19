@@ -22,6 +22,8 @@ function getEmptyNote() {
 export function NoteHeader({ addNote }) {
   const [newNote, setNewNote] = useState(getEmptyNote())
   const [isOpen, setIsOpen] = useState(false)
+  const [fileUrl, setFileUrl] = useState('')
+  const [isVideoOpen, setIsVideoOpen] = useState(false)
 
   const handleChange = ({ target }) => {
     if (!isOpen) setIsOpen(true)
@@ -41,6 +43,32 @@ export function NoteHeader({ addNote }) {
     console.log(newNote)
   }
 
+  const handleChangeVideo = ({ target }) => {
+    const { value } = target
+    setNewNote((prev) => ({
+      ...prev,
+      type: value ? 'NoteVideo' : 'NoteTxt',
+      info: { ...prev.info, video: value },
+    }))
+  }
+
+  const handleChangeFile = ({ target }) => {
+    const file = target.files[0]
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = (ev) => {
+      setNewNote((prev) => ({
+        ...prev,
+        type: 'NoteImg',
+        info: { ...prev.info, url: ev.target.result },
+      }))
+      setFileUrl(ev.target.result)
+      setIsOpen(true)
+    }
+    reader.readAsDataURL(file)
+
+    target.value = '' // כדי שאפשר יהיה לבחור שוב את אותו קובץ
+  }
   const submitForm = (ev) => {
     ev.preventDefault()
 
@@ -51,6 +79,8 @@ export function NoteHeader({ addNote }) {
 
   const cancelNote = () => {
     setIsOpen(false)
+    setIsVideoOpen(false)
+    setFileUrl('')
     setNewNote(getEmptyNote())
   }
 
@@ -92,12 +122,22 @@ export function NoteHeader({ addNote }) {
             <button onClick={() => cancelNote()} type='button'>
               <MicIcon />
             </button>
-            {/* <button onClick={() => {}}>
-            <YouTubeIcon />
-          </button> */}
-            <button type='button'>
-              <ImageIcon />
+            <button
+              type='button'
+              className='icon-botton'
+              onClick={() => {
+                setIsOpen(true)
+                setIsVideoOpen((prev) => !prev)
+              }}
+            >
+              <YouTubeIcon />
             </button>
+            {/* <button type='button'> */}
+            <label htmlFor='addImg' className='icon-botton'>
+              <ImageIcon />
+            </label>
+
+            {/* </button> */}
             <label htmlFor='color' className='icon-botton'>
               <PalletteIcon />
             </label>
@@ -108,6 +148,13 @@ export function NoteHeader({ addNote }) {
               hidden
               onChange={handleChangeColor}
               value={newNote.style.backgroundColor}
+            />
+            <input
+              id='addImg'
+              name='addImg'
+              type='file'
+              hidden
+              onChange={handleChangeFile}
             />
 
             <button onClick={() => cancelNote()} type='button'>
@@ -123,6 +170,23 @@ export function NoteHeader({ addNote }) {
                 value={newNote.info.txt || ''}
                 onChange={handleChange}
               />
+
+              {fileUrl && (
+                <img src={fileUrl} alt='' style={{ height: 100, width: 100 }} />
+              )}
+
+              {isVideoOpen && (
+                <input
+                  type='url'
+                  id='video'
+                  name='video'
+                  placeholder='Video url'
+                  value={newNote.info.video || ''}
+                  onClick={(ev) => ev.stopPropagation()}
+                  onChange={handleChangeVideo}
+                />
+              )}
+
               {todos.map((t, i) => (
                 <div>
                   <input

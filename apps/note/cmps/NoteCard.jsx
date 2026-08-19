@@ -13,28 +13,28 @@ export function NoteImg({ url = null }) {
 
 function getYoutubeId(url) {
   const match = url.match(
-    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/,
   )
   return match ? match[1] : null
 }
 
 export function NoteVideo({ info = {}, isEditMode, onChangeInfo }) {
-  const url = info.url
+  const video = info.video
+  if (!video) return
+
   if (isEditMode) {
     return (
       <input
-        type='url'
-        name='url'
+        type='video'
+        name='video'
         placeholder='Video url'
-        value={url || ''}
+        value={video || ''}
         onClick={(ev) => ev.stopPropagation()}
-        onChange={(ev) => onChangeInfo({ ...info, url: ev.target.value })}
+        onChange={(ev) => onChangeInfo({ ...info, video: ev.target.value })}
       />
     )
   }
-
-  if (!url) return
-  const youtubeId = getYoutubeId(url)
+  const youtubeId = getYoutubeId(video)
   return (
     <div className='video-note' onClick={(ev) => ev.stopPropagation()}>
       {youtubeId ? (
@@ -46,7 +46,7 @@ export function NoteVideo({ info = {}, isEditMode, onChangeInfo }) {
           allowFullScreen
         />
       ) : (
-        <video src={url} controls />
+        <video src={video} controls />
       )}
     </div>
   )
@@ -117,7 +117,7 @@ export function NoteCard({
 
       <NoteTxt txt={info.txt} />
       <NoteImg url={info.url} />
-      <NoteVideo video={note.video} />
+      <NoteVideo info={note.info} isEditMode={false} />
       <NoteTodos
         todos={info.todos}
         setNoteTodoIsDone={setNoteTodoIsDone}
