@@ -7,13 +7,28 @@ export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
   const isRead = mail.isRead
   const IsReadIcon = isRead ? icons.readMail : icons.unreadMail
 
+  function _getMailTimeLabel(createdAt) {
+    const now = Date.now()
+    const DAY = 1000 * 60 * 60 * 24
+
+    const isToday = now - createdAt < DAY
+    const isThisYear =
+      new Date(createdAt).getFullYear() === new Date(now).getFullYear()
+
+    if (isToday) return utilService.getTimeOfDay(createdAt)
+    if (isThisYear) {
+      return `${utilService.getMonthName(createdAt)} ${utilService.getDayNumericDate(createdAt)}`
+    }
+    return utilService.getNumericDate(createdAt, "he-IL")
+  }
+
   return (
     <div
       className={` mail-row ${isRead ? "mail-read" : ""}  `}
       onMouseEnter={() => setOnHover(true)}
       onMouseLeave={() => setOnHover(false)}
     >
-      <div className="mail-modifiers" onClick={(ev) => ev.stopPropagation()} >
+      <div className="mail-modifiers" onClick={(ev) => ev.stopPropagation()}>
         <input type="checkbox" />
         <div className="icon-mail  hollow-star">{icons.star}</div>
         <div className="icon-mail important">{icons.important}</div>
@@ -45,27 +60,9 @@ export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
             </span>
           </div>
         ) : (
-          <span className="send-time">
-            {utilService.getTimeOfDay(mail.createdAt)}
-            {/* ------
-        {utilService.getMonthName(mail.createdAt)}{" "}
-        {utilService.getDayNumericDate(mail.createdAt, "he-IL", )}
-        ------
-        {utilService.getNumericDate(mail.createdAt, "he-IL",)}
-        ------
-        {utilService.getYearName(mail.createdAt)}
-        ------
-        {utilService.getDayName(mail.createdAt)} */}
-          </span>
+          <span className="send-time">{_getMailTimeLabel(mail.createdAt)}</span>
         )}
       </div>
-      {/* 
-      <div class="row">
-  <input type="checkbox">
-  <span class="sender">ישראל ישראלי</span>
-  <span class="subject">נושא המייל ואחריו קטע מהתוכן שיכול להיות ארוך מאוד</span>
-  <span class="time">14:32</span>
-</div> */}
     </div>
   )
 }

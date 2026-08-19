@@ -125,7 +125,7 @@ function getDayName(date, locale) {
 
 ///added ---------------------------------------------------
 
-function getNumericDate(date, locale) {
+function getNumericDate(date, locale = "he-IL") {
   date = new Date(date)
   const options = {
     year: "2-digit",
@@ -133,22 +133,21 @@ function getNumericDate(date, locale) {
     day: "numeric",
   }
 
-  return date.toLocaleDateString(locale, options)
+  return date.toLocaleDateString(locale, options).replaceAll(".", "/")
 }
-function getDayNumericDate(date, locale) {
+function getDayNumericDate(date, locale = "he-IL") {
   date = new Date(date)
-  const num = date.toLocaleDateString(locale, date)
-  return num.slice(0, num.indexOf("."))
+  return date.toLocaleDateString(locale, { day: "numeric" }) // "3"
 }
 
 function getYearName(date, locale) {
   date = new Date(date)
-  return date.toLocaleDateString(locale, { year: "numeric" })
+  return date.toLocaleDateString(locale, { year: "numeric" }) //"2017"
 }
 
 function getMonthName(date, locale) {
   date = new Date(date)
-  return date.toLocaleDateString(locale, { month: "long" }) // "August"
+  return date.toLocaleDateString(locale, { month: "short" }) // "August"
 }
 
 function getTimeOfDay(date, locale) {
