@@ -9,7 +9,13 @@ export function MailDetails() {
   const params = useParams()
 
   useEffect(() => {
-    emailsService.get(params.id).then(setMail)
+    emailsService.get(params.id).then((mail) => {
+      if (!mail.isRead) {
+        mail = { ...mail, isRead: true }
+        emailsService.save(mail)
+      }
+      setMail(mail)
+    })
   }, [params.id])
 
   console.log("mail is:", mail)

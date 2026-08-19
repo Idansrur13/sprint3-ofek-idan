@@ -56,6 +56,16 @@ export function MailEdit() {
         onChange={handleChange}
       />
 
+      <label htmlFor="to">to:</label>
+      <input
+        type="text"
+        placeholder="to"
+        id="to"
+        name="to"
+        value={mail.to}
+        onChange={handleChange}
+      />
+
       <div className="mail-save">
         <button>Save</button>
         <Link to="/mail">

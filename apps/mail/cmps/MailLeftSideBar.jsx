@@ -4,7 +4,7 @@ const { useState, useEffect } = React
 import { icons } from "../services/mail.icons.js"
 import { emailsService } from "../services/mail.service.js"
 
-export function MailLeftSideBar({ emails }) {
+export function MailLeftSideBar({ emails, onSentClicked }) {
   const [unreadMailCount, setUnreadMailCount] = useState(0)
 
   useEffect(() => {
@@ -26,14 +26,17 @@ export function MailLeftSideBar({ emails }) {
   return (
     <section className="mail-left">
       <div className="compose">
-          <Link to="/mail/edit">
-        <button>
+        <Link to="/mail/edit">
+          <button>
             {icons.compose}
             <span>Compose</span>
-        </button>
-          </Link>
+          </button>
+        </Link>
+        <div className="inbox">
+          <button>Inbox</button>
+        </div>
       </div>
-      <button className="sent">
+      <button className="sent" onClick={() => onSentClicked(true)}>
         {icons.sent}
         <span>Sent</span>
       </button>

@@ -16,23 +16,36 @@ import { MailLeftSideBar } from "../cmps/MailLeftSideBar.jsx"
 
 export function MailIndex() {
   const [emails, setEmails] = useState(null)
+  const [isSentEmails, setIsSentEmails] = useState(null)
   const [searchParams, setSearchParams] = useSearchParams()
   const [filterBy, setFilterBy] = useState(emailsService.getDefaultFilter())
 
   useEffect(() => {
-    loademails(filterBy)
+    loadEmails(filterBy)
   }, [])
 
   useEffectUpdate(() => {
-    loademails(filterBy)
+    loadEmails(filterBy)
     setSearchParams(utilService.trimObj(filterBy))
   }, [filterBy])
 
-  function loademails() {
-    emailsService.query(filterBy).then((emails) => {
+  function loadEmails() {
+    const emailsFromService = emailsService.query
+    emailsFromService(filterBy).then((emails) => {
       console.log("emails from storage:", emails)
-      setEmails(emails)
+
+      const emailsWithTo = emails.filter((mail) => mail.to)
+      if (emailsWithTo && isSentEmails) setEmails(emailsWithTo)
+      else {
+      }
+      const emailsWithFrom = emails.filter((mail) => mail.from)
+      if (emailsWithFrom && !isSentEmails) setEmails(emailsWithFrom)
     })
+  }
+
+  function onSentClicked(condition) {
+    setIsSentEmails(condition)
+    console.log("isSentEmails:", isSentEmails)
   }
 
   function onToggleRead(mailId, mailRead) {
@@ -85,7 +98,7 @@ export function MailIndex() {
         onClearFilter={onClearFilter}
       />
 
-      <MailLeftSideBar emails={emails} />
+      <MailLeftSideBar emails={emails} onSentClicked={onSentClicked} />
       <MailRightSideBar />
 
       <MailList

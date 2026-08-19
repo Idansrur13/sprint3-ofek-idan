@@ -28,6 +28,13 @@
     }
   }
 
+  .inbox {
+    display: flex;
+    justify-content: start;
+    padding-inline-start: 1.5rem;
+    margin-top: 8px;
+  }
+
   .unread-emails {
     display: flex;
     justify-content: start;

@@ -13,11 +13,10 @@ export const emailsService = {
   save,
   getEmptyMail,
   getDefaultFilter,
-  // getSpeedStats,
-  //   getVendorStats,
+
   getFilterFromSearchParams,
 }
-// For Debug (easy access from console):
+// For Debug  access from console):
 // window.cs = mailService
 
 function query(filterBy = {}) {
@@ -60,14 +59,29 @@ function save(mail) {
 }
 
 function getEmptyMail(
-  subject = "",
-  to = "someone",
+  to = "",
   from = "",
+  subject = "",
   body = "",
   createdAt = Date.now(),
-  isRead = false,
+  sentAt = "",
+  isRead = "false",
+  isStarred = "",
+  labels = "",
+  removedAt = "",
 ) {
-  return { subject, to, from, body, createdAt, isRead }
+  return {
+    to,
+    from,
+    subject,
+    body,
+    createdAt,
+    sentAt,
+    isRead,
+    isStarred,
+    labels,
+    removedAt,
+  }
 }
 
 function getDefaultFilter(filterBy = { txt: "" }) {
@@ -104,14 +118,25 @@ function _createMails() {
         words[utilService.getRandomIntInclusive(0, words.length - 1)]
       const body =
         sentences[utilService.getRandomIntInclusive(0, sentences.length - 1)]
-      mails.push(_createMail(subject, "", from, body, Date.now()))
+      mails.push(_createMail("", from, subject, body, Date.now()))
     }
     utilService.saveToStorage(MAIL_KEY, mails)
   }
 }
 
-function _createMail(subject, to, from, body, createdAt, isRead) {
-  const mail = getEmptyMail(subject, to, from, body, createdAt, isRead)
+function _createMail(
+  to,
+  from,
+  subject,
+  body,
+  createdAt,
+  sentAt,
+  isRead,
+  isStarred,
+  labels,
+  removedAt,
+) {
+  const mail = getEmptyMail(to, from, subject, body, createdAt, sentAt, isRead)
   mail.id = utilService.makeId()
   return mail
 }
