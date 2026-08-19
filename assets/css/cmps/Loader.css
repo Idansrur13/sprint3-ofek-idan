@@ -1,0 +1,23 @@
+.spinner {
+    display: inline-flex;
+    color: #5d8ca5;
+    animation: spinner-animation 1s linear infinite;
+}
+
+@keyframes spinner-animation {
+    0% {
+        rotate: 0deg;
+        opacity: 0.5;
+    }
+
+    50% {
+        rotate: 180deg;
+        opacity: 0.8;
+    }
+
+    100% {
+        rotate: 360deg;
+        opacity: 0.5;
+    }
+
+}

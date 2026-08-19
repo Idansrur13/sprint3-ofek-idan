@@ -1,11 +1,12 @@
 const { useState, useEffect } = React
 const { useSearchParams } = ReactRouterDOM
 
-const tabs = ['all', 'isPinned']
+const tabs = ['all', 'isPinned', 'images', 'text', 'misions']
 
 import { NoteList } from '../cmps/NoteList.jsx'
 import { NoteHeader } from '../cmps/NoteHeader.jsx'
 import { noteService } from '../services/note.service.js'
+import { Loader } from '../../../cmps/loader.jsx'
 
 // type Tabs = 'isPinned' | 'all'
 const filteredNotes = (filter, notes = []) => {
@@ -18,31 +19,43 @@ const filteredNotes = (filter, notes = []) => {
   if (filter === 'isPinned') {
     return notes.filter((n) => n.isPinned)
   }
+  if (filter === 'images') {
+    return notes.filter((n) => n.info.url)
+  }
+  if (filter === 'text') {
+    return notes.filter((n) => n.info.txt)
+  }
+  if (filter === 'misions') {
+    return notes.filter((n) => n.info.todos)
+  }
   // return notes
 }
 
 export function NoteIndex() {
   const [searchParams, setSearchParams] = useSearchParams()
   const filterParams = searchParams.get('filter') || 'all'
-
+  const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState(filterParams)
   const [notes, setNotes] = useState(null)
+  const [filterNotes, setFilterNotes] = useState(null)
 
   useEffect(() => {
     loadNotes()
   }, [])
 
   useEffect(() => {
-    if (filter) {
-      setNotes(filteredNotes(filter, notes))
-    }
-  }, [filter])
+    setFilterNotes(filteredNotes(filter, notes))
+  }, [filter, notes])
 
   function loadNotes() {
     noteService
       .query()
-      .then((n) => setNotes(filteredNotes(filter, n)))
-      .catch((e) => console.log('שגיאה', e))
+      .then((n) => {
+        return (setNotes((filter, n)), setLoading(false))
+      })
+      .catch((e) => {
+        return (console.log('שגיאה', e), setLoading(false))
+      })
   }
 
   const onAddNote = (n) => {
@@ -94,6 +107,21 @@ export function NoteIndex() {
     return
   }
 
+  if (loading) {
+    return (
+      <div
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          display: 'grid',
+          height: '100vh',
+        }}
+      >
+        <Loader />
+      </div>
+    )
+  }
+
   return (
     <div className='note-layout'>
       <aside className='note-nav'>
@@ -117,7 +145,7 @@ export function NoteIndex() {
         />
         <section className='container note-page '>
           <NoteList
-            notes={notes}
+            notes={filterNotes}
             setNoteTodoIsDone={setNoteTodoIsDone}
             setPinedNote={setPinedNote}
             deleteNote={deleteNote}

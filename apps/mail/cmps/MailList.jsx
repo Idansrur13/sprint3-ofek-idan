@@ -1,3 +1,26 @@
-export function MailList() {
-    return <div>Mail list</div>
+const { Link, useNavigate } = ReactRouterDOM
+import { MailPreview } from "./MailPreview.jsx"
+
+export function MailList({ emails, onRemoveMail, onToggleRead }) {
+  const navigate = useNavigate()
+  return (
+    <ul className="mail-list">
+      {emails.map((mail) => (
+        <li
+          key={mail.id}
+          onClick={() => {
+            // onToggleRead(mail.id, true).then(() => {
+            navigate(`/mail/${mail.id}`)
+            // })
+          }}
+        >
+          <MailPreview
+            mail={mail}
+            onRemoveMail={onRemoveMail}
+            onToggleRead={onToggleRead}
+          />
+        </li>
+      ))}
+    </ul>
+  )
 }

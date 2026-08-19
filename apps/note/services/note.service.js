@@ -1,6 +1,7 @@
 // note
 
 import { storageService } from '../../../services/async-storage.service.js'
+import { demoDataService } from '../../../services/demo-data.service.js'
 
 // service
 export const noteService = {
@@ -13,7 +14,11 @@ export const noteService = {
 
 function query() {
   return storageService.query('notes').then((r) => {
-    return r
+    if (r.length > 0) {
+      return r
+    } else {
+      demoDataService.seedDemoData()
+    }
   })
 }
 
