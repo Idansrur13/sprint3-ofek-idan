@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.icon-mail {
+    height: 18px;
+    width: 18px;
+    fill: none;
+    stroke: rgb(140, 140, 140);
+    flex-shrink: 0;
+
+
+}

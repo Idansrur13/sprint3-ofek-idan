@@ -27,7 +27,7 @@ export const KeepIcon = () => {
       alt='Google Keep (2026)'
       width='22'
       height='22'
-      className='icon-botton'
+      className='icon-botton icon'
     />
   )
 }
@@ -37,9 +37,9 @@ export const MailIcon = () => {
     <img
       src='https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/gmail-2026/default.svg'
       alt='Gmail (2026)'
-      width='22'
-      height='22'
-      className='icon-botton'
+      width='18'
+      height='18'
+      className='icon-botton icon'
     />
   )
 }
