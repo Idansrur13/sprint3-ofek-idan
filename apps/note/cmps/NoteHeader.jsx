@@ -149,6 +149,7 @@ export function NoteHeader({ addNote }) {
               onChange={handleChangeColor}
               value={newNote.style.backgroundColor}
             />
+
             <input
               id='addImg'
               name='addImg'
