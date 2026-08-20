@@ -28,7 +28,6 @@ export function Home() {
           <KeepIcon size={160} />
           Note
         </div>
-        הכ
       </div>
       <ThanksYou />
     </section>
