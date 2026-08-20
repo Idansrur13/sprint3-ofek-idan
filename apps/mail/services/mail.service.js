@@ -111,14 +111,14 @@ function _createMails() {
       "Thanks! Fixed the trash folder",
     ]
     mails.push(...demoEmails)
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 26; i++) {
       const from =
         recipients[utilService.getRandomIntInclusive(0, recipients.length - 1)]
       const subject =
         words[utilService.getRandomIntInclusive(0, words.length - 1)]
       const body =
         sentences[utilService.getRandomIntInclusive(0, sentences.length - 1)]
-      mails.push(_createMail("", from, subject, body, Date.now()))
+      mails.push(_createMail("", from, subject, body, Date.now(), "", false,false,"",""))
     }
     utilService.saveToStorage(MAIL_KEY, mails)
   }
@@ -136,7 +136,18 @@ function _createMail(
   labels,
   removedAt,
 ) {
-  const mail = getEmptyMail(to, from, subject, body, createdAt, sentAt, isRead)
+  const mail = getEmptyMail(
+    to,
+    from,
+    subject,
+    body,
+    createdAt,
+    sentAt,
+    isRead,
+    isStarred,
+    labels,
+    removedAt,
+  )
   mail.id = utilService.makeId()
   return mail
 }

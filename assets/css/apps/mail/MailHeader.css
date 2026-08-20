@@ -1,5 +1,6 @@
 .mail-header {
   position: relative;
+  /* make position sticky or fixed!! */
   grid-area: header;
   display: flex;
   align-items: center;
