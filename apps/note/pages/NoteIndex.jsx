@@ -124,6 +124,12 @@ export function NoteIndex() {
 
   return (
     <div className='note-layout'>
+      {/* <div style={{ position: 'fixed', height: '100%', width: '100%' }}>
+        <img
+          src='https://ssl.gstatic.com/ui/v1/icons/mail/themes/beach2/bg_sun_1680x1050.jpg'
+          alt=''
+        />
+      </div> */}
       <aside className='note-nav'>
         {tabs.map((t) => {
           return (

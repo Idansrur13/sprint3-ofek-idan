@@ -1,0 +1,60 @@
+.book-index {
+
+
+    padding: 16px;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    padding-block: 24px;
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+    padding: 16px;
+    background: white;
+    border: 1px solid var(--gray1);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px #1313131a;
+    transition: transform 0.3s;
+}
+
+.book-card:hover {
+    background-color: #dbf8ec;
+    box-shadow: inset;
+}
+
+
+.book-card p {
+    margin: 0;
+    color: var(--gray3);
+}
+
+.book-card .book-pirce-pages {
+    border-top: 1px solid #cbc9c9;
+    padding-top: 10px;
+
+    display: flex;
+    justify-content: space-around;
+    font-weight: 500;
+    gap: 4px;
+}
+
+.book-card .subtitle {
+    font-size: 0.9em;
+    font-weight: lighter;
+    color: var(--clr2);
+    margin-bottom: 0.25em;
+}
+
+.book-card .title {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--clr1);
+    margin-bottom: 0.25em;
+}

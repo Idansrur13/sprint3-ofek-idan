@@ -1,6 +1,12 @@
 const { Link, NavLink, useLocation } = ReactRouterDOM
 const { useState } = React
-import { Menu, MailIcon, KeepIcon } from '../apps/icons/icons.jsx'
+import {
+  Menu,
+  MailIcon,
+  KeepIcon,
+  BookIcon,
+  HomeIcon,
+} from '../apps/icons/icons.jsx'
 
 const APP_BRANDS = {
   '/mail': { Icon: MailIcon, label: 'GMAIL' },
@@ -16,7 +22,7 @@ export function AppHeader() {
   const [openNavBar, setOpenNavBar] = useState(false)
   const { Icon, label } = APP_BRANDS[brandKey] || DEFAULT_BRAND
   return (
-    <header className='app-header '>
+    <header className='app-header-menu '>
       <div onClick={() => setOpenNavBar((v) => !v)}>
         <Menu />
       </div>
@@ -29,7 +35,7 @@ export function AppHeader() {
         </div>
       </Link>
       {openNavBar && (
-        <div style={{ position: 'absolute', top: 40, zIndex: 4 }}>
+        <div>
           <NavBar label={label} />
         </div>
       )}
@@ -40,15 +46,24 @@ export function AppHeader() {
 function NavBar({ label }) {
   return (
     <nav className='nav-div'>
-      <NavLink to='/'> Home</NavLink>
-      <NavLink to='/about'>About</NavLink>
+      <NavLink to='/'>
+        <HomeIcon />
+        {/* Home */}
+      </NavLink>
+
+      <NavLink to='/Books'>
+        {' '}
+        <BookIcon />
+        {/* Books */}
+      </NavLink>
       <NavLink to='/mail'>
-        <MailIcon /> Mail
+        <MailIcon />
+        {/* Mail */}
       </NavLink>
       <NavLink to='/note'>
         {' '}
         <KeepIcon />
-        Note
+        {/* Note */}
       </NavLink>
     </nav>
   )

@@ -38,6 +38,17 @@ export const notes = [
     info: { txt: 'Remember to call mom on Friday' },
   },
   {
+    id: 'n104b',
+    createdAt: 1112225,
+    type: 'NoteTxt',
+    isPinned: true,
+    style: { backgroundColor: '#fff5d3' },
+    info: {
+      title: 'most see againnnn',
+      video: 'https://www.youtube.com/watch?v=l7iTP1TT_Cc',
+    },
+  },
+  {
     id: 'n105',
     createdAt: 1112226,
     type: 'NoteImg',
@@ -130,6 +141,155 @@ export const notes = [
     info: {
       url: 'https://picsum.photos/id/1040/200/300',
       title: 'Dream house',
+    },
+  },
+  {
+    id: 'n113',
+    createdAt: 1112234,
+    type: 'NoteTxt',
+    isPinned: true,
+    style: { backgroundColor: '#ffd3d3' },
+    info: {
+      txt: 'It worked yesterday. I changed nothing. Git strongly disagrees 🤨',
+    },
+  },
+  {
+    id: 'n114',
+    createdAt: 1112235,
+    type: 'NoteImg',
+    isPinned: false,
+    style: { backgroundColor: '#fff0d3' },
+    info: {
+      url: 'https://cataas.com/cat/says/console.log(here)?width=300&height=250',
+      title: 'My professional debugging setup',
+    },
+  },
+  {
+    id: 'n115',
+    createdAt: 1112236,
+    type: 'NoteTodos',
+    isPinned: true,
+    style: { backgroundColor: '#e2ffd3' },
+    info: {
+      title: 'Definition of Done (allegedly)',
+      todos: [
+        { txt: 'Remove every console.log', isDone: false },
+        { txt: 'Write tests', isDone: false },
+        { txt: 'Rename the variable for the 4th time', isDone: true },
+        { txt: 'Say "works on my machine"', isDone: true },
+      ],
+    },
+  },
+  {
+    id: 'n116',
+    createdAt: 1112237,
+    type: 'NoteImg',
+    isPinned: false,
+    style: { backgroundColor: '#d3e8ff' },
+    info: {
+      url: 'https://placedog.net/300/250?id=25',
+      title: 'The team 5 minutes before the sprint demo',
+    },
+  },
+  {
+    id: 'n117',
+    createdAt: 1112238,
+    type: 'NoteTodos',
+    isPinned: false,
+    style: { backgroundColor: '#ffe0f7' },
+    info: {
+      title: 'Refactor plan (day 3)',
+      todos: [
+        { txt: 'Delete the whole file and rewrite it', isDone: true },
+        { txt: 'Restore the old file from git', isDone: true },
+        { txt: 'Install 12 packages, use none of them', isDone: true },
+        { txt: 'Add // TODO: fix this properly later', isDone: true },
+        { txt: 'Fix it properly later', isDone: false },
+      ],
+    },
+  },
+  {
+    id: 'n118',
+    createdAt: 1112239,
+    type: 'NoteTxt',
+    isPinned: false,
+    style: { backgroundColor: '#f3ffd3' },
+    info: {
+      txt: 'Commit history: "fix" → "fix fix" → "actually fix" → "revert actually fix"',
+    },
+  },
+  {
+    id: 'n119',
+    createdAt: 1112240,
+    type: 'NoteImg',
+    isPinned: true,
+    style: { backgroundColor: '#e9e0ff' },
+    info: {
+      url: 'https://cataas.com/cat/gif?width=300&height=250',
+      title: 'My layout after one more display: flex',
+    },
+  },
+  {
+    id: 'n120',
+    createdAt: 1112241,
+    type: 'NoteTodos',
+    isPinned: false,
+    removedAt: 1112741,
+    style: { backgroundColor: '#d3fff2' },
+    info: {
+      title: 'Sprint 4 backlog (realistic edition)',
+      todos: [
+        { txt: 'Dark mode nobody asked for', isDone: false },
+        { txt: 'Drag & drop that works only on Chrome', isDone: false },
+        { txt: 'Rewrite everything in TypeScript', isDone: false },
+        { txt: 'Change a color and call it a redesign', isDone: true },
+      ],
+    },
+  },
+  {
+    id: 'n121',
+    createdAt: 1112242,
+    type: 'NoteTxt',
+    isPinned: false,
+    style: { backgroundColor: '#ffefef' },
+    info: {
+      txt: 'Planned to sleep early. Then I saw one tiny bug. Good morning ☀️',
+    },
+  },
+  {
+    id: 'n122',
+    createdAt: 1112243,
+    type: 'NoteImg',
+    isPinned: false,
+    style: { backgroundColor: '#fdf6d3' },
+    info: {
+      url: 'https://picsum.photos/id/237/300/250',
+      title: 'Me hearing "it is just a small design change"',
+    },
+  },
+  {
+    id: 'n123',
+    createdAt: 1112244,
+    type: 'NoteTodos',
+    isPinned: true,
+    style: { backgroundColor: '#e0f0ff' },
+    info: {
+      title: 'Code review checklist',
+      todos: [
+        { txt: 'LGTM 🚀 (did not read a single line)', isDone: true },
+        { txt: 'Argue about tabs vs spaces for 40 min', isDone: true },
+        { txt: 'Approve at 23:58 so CI runs overnight', isDone: false },
+      ],
+    },
+  },
+  {
+    id: 'n124',
+    createdAt: 1112245,
+    type: 'NoteTxt',
+    isPinned: false,
+    style: { backgroundColor: '#eef0ff' },
+    info: {
+      txt: 'useEffect ran twice. I ran out of ideas once.',
     },
   },
 ]

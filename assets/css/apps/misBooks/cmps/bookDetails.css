@@ -1,0 +1,58 @@
+.img-show {
+    width: 400px;
+    height: 400px;
+}
+
+
+.book-details {
+
+
+    justify-content: center;
+
+
+    display: flex;
+    flex-direction: row;
+
+    gap: 4px;
+    padding: 16px;
+    background: rgb(255, 255, 255);
+    border: 1px solid var(--gray1);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px #1313131a;
+    transition: transform 0.3s;
+}
+
+
+.review-div {
+    margin-top: auto;
+
+}
+
+
+.review-book {
+    padding-inline: 24px;
+    width: fit-content;
+    border-radius: 10px;
+    border: 1px solid #78777797;
+}
+
+.action-prev-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.book-card img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.review-div {
+    padding: 4px;
+    display: flex;
+    justify-content: space-between;
+    margin: 4px;
+    font-size: small;
+    border-bottom: 1px solid #52525258;
+}

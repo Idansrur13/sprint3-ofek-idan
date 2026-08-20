@@ -24,6 +24,7 @@ export function NoteHeader({ addNote }) {
   const [isOpen, setIsOpen] = useState(false)
   const [fileUrl, setFileUrl] = useState('')
   const [isVideoOpen, setIsVideoOpen] = useState(false)
+  const [newTodo, setNewTodo] = useState('')
 
   const handleChange = ({ target }) => {
     if (!isOpen) setIsOpen(true)
@@ -87,6 +88,7 @@ export function NoteHeader({ addNote }) {
   const todos = newNote.info.todos || []
 
   const handleChangeTodos = (idx, value) => {
+    setNewTodo('')
     setNewNote((prev) => {
       const prevTodos = prev.info.todos || []
       const nextTodos =
@@ -119,12 +121,17 @@ export function NoteHeader({ addNote }) {
               className='text-center note-title'
             />
 
-            <button onClick={() => cancelNote()} type='button'>
+            <button
+              onClick={() => cancelNote()}
+              className=' icon-botton'
+              type='button'
+              style={{ margin: 0 }}
+            >
               <MicIcon />
             </button>
             <button
               type='button'
-              className='icon-botton'
+              className=' icon-botton'
               onClick={() => {
                 setIsOpen(true)
                 setIsVideoOpen((prev) => !prev)
@@ -133,12 +140,12 @@ export function NoteHeader({ addNote }) {
               <YouTubeIcon />
             </button>
             {/* <button type='button'> */}
-            <label htmlFor='addImg' className='icon-botton'>
+            <label htmlFor='addImg' className=' icon-botton'>
               <ImageIcon />
             </label>
 
             {/* </button> */}
-            <label htmlFor='color' className='icon-botton'>
+            <label htmlFor='color' className=' icon-botton'>
               <PalletteIcon />
             </label>
             <input
@@ -158,7 +165,11 @@ export function NoteHeader({ addNote }) {
               onChange={handleChangeFile}
             />
 
-            <button onClick={() => cancelNote()} type='button'>
+            <button
+              onClick={() => cancelNote()}
+              type='button'
+              className=' icon-botton'
+            >
               <X />
             </button>
           </div>
@@ -189,7 +200,7 @@ export function NoteHeader({ addNote }) {
               )}
 
               {todos.map((t, i) => (
-                <div>
+                <div key={i}>
                   <input
                     key={i}
                     type='text'
@@ -201,16 +212,19 @@ export function NoteHeader({ addNote }) {
               ))}
 
               <div className='header-action'>
-                <button type='button'>+</button>
+                <button
+                  type='button'
+                  onClick={() => handleChangeTodos(todos.length, newTodo)}
+                >
+                  +
+                </button>
 
                 <input
                   type='text'
                   name='todo'
                   placeholder='טודו חדש...'
-                  value={''}
-                  onChange={(e) =>
-                    handleChangeTodos(todos.length, e.target.value)
-                  }
+                  value={newTodo}
+                  onChange={(e) => setNewTodo(e.target.value)}
                 />
               </div>
               <button htmlFor='color' className='save-note-btn' type='submit'>

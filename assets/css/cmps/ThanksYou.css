@@ -1,0 +1,38 @@
+.thanks-you {
+  display: flex;
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: #ffe8ae7b;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 22px 12px;
+  text-align: start;
+
+  backdrop-filter: blur(2px);
+
+}
+
+.thanks-you .thanks-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100dvw;
+
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+
+}
+
+.thanks-you .thanks-card {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  gap: 8px;
+}
+
+.thanks-you .thanks-avatar {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}

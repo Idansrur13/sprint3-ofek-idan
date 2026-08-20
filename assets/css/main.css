@@ -1,18 +1,32 @@
+/* Setup */
 @import "./basics/vars.css";
+@import "./apps/misBooks/setup/vars.css";
+
+/* Base */
 @import "./basics/base.css";
 @import "./basics/helpers.css";
 @import "./basics/layout.css";
 
-@import "./cmps/home.css";
+/* Components */
+@import "./cmps/Home.css";
 @import "./cmps/UserMsg.css";
 @import "./cmps/AppHeader.css";
 @import "./cmps/Loader.css";
+@import "./cmps/ThanksYou.css";
 
+/* Note app */
 @import "./apps/note/NoteIndex.css";
 @import "./apps/note/NoteList.css";
+
+/* Mail app */
+@import "./apps/mail/mail-base.css";
 @import "./apps/mail/MailIndex.css";
 @import "./apps/mail/MailList.css";
 @import "./apps/mail/MailHeader.css";
-
 @import "./apps/mail/MailLeftSideBar.css";
-@import "./apps/mail/MailRIghtSideBar.css";
+@import "./apps/mail/MailRightSideBar.css";
+
+/* Books app */
+@import "./apps/misBooks/main.css";
+/* @import "./apps/misBooks/cmps/bookEdit.css"; */
+/* @import "./apps/misBooks/cmps/bookDetails.css"; */

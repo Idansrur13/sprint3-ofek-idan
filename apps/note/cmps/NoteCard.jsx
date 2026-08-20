@@ -1,4 +1,9 @@
-import { TrashIcon, LayersIcon, PancelIcon } from '../../icons/icons.jsx'
+import {
+  TrashIcon,
+  LayersIcon,
+  PancelIcon,
+  PinIcon,
+} from '../../icons/icons.jsx'
 
 const { useState } = React
 
@@ -108,9 +113,9 @@ export function NoteCard({
           {info.title}
         </p>
         {note.isPinned && (
-          <div className='check-note'>
+          <div className='check-note ' style={{ rotate: '20deg' }}>
             {note.isPinned}
-            <i className='fa-solid fa-map-pin'></i>{' '}
+            <PinIcon />
           </div>
         )}
       </div>

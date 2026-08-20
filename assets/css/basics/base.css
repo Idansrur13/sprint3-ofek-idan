@@ -3,9 +3,13 @@
   box-sizing: border-box;
 }
 
+
+
 body {
   margin: 0;
   font-family: "Google Sans", "Roboto", arial, sans-serif;
+  background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/themes/beach2/bg_sun_1680x1050.jpg');
+
 }
 
 h1,

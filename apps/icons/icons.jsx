@@ -20,26 +20,62 @@ export const Menu = (isActive = false) => {
   )
 }
 
-export const KeepIcon = () => {
+export const HomeIcon = ({ size = 22 }) => {
   return (
     <img
-      src='https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/google-keep-2026/default.svg'
+      src='https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/gcp-home/default.svg'
       alt='Google Keep (2026)'
-      width='22'
-      height='22'
-      className='icon-botton icon'
+      width={size}
+      height={size}
+      className=' icon'
+      style={{ height: size, width: size }}
+    />
+  )
+}
+export const LinkDinIcon = ({ size = 22 }) => {
+  return (
+    <img
+      src='https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/linkedin/default.svg'
+      alt='LinkDin'
+      width={size}
+      height={size}
+      className=' icon'
+      style={{ height: size, width: size }}
     />
   )
 }
 
-export const MailIcon = () => {
+export const KeepIcon = ({ size = 22 }) => {
+  return (
+    <img
+      src='https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/google-keep-2026/default.svg'
+      alt='Google Keep (2026)'
+      width={size}
+      height={size}
+      className=' icon'
+      style={{ height: size, width: size }}
+    />
+  )
+}
+
+export const MailIcon = ({ size = 22 }) => {
   return (
     <img
       src='https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/gmail-2026/default.svg'
       alt='Gmail (2026)'
-      width='18'
-      height='18'
-      className='icon-botton icon'
+      width={size}
+      height={size}
+      style={{ height: size, width: size }}
+    />
+  )
+}
+
+export const BookIcon = ({ size = 22 }) => {
+  return (
+    <img
+      src='https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/notebooklm/default.svg'
+      alt='Gmail (2026)'
+      style={{ height: size, width: size }}
     />
   )
 }
@@ -198,6 +234,25 @@ export const PalletteIcon = () => {
       <circle cx='17.5' cy='10.5' r='.5' fill='currentColor' />
       <circle cx='6.5' cy='12.5' r='.5' fill='currentColor' />
       <circle cx='8.5' cy='7.5' r='.5' fill='currentColor' />
+    </svg>
+  )
+}
+export const PinIcon = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='lucide lucide-pin-icon lucide-pin'
+    >
+      <path d='M12 17v5' />
+      <path d='M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z' />
     </svg>
   )
 }

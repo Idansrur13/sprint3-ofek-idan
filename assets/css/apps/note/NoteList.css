@@ -73,6 +73,26 @@
     border-radius: 8px;
 }
 
+.video-note {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background-color: #000;
+}
+
+.video-note iframe,
+.video-note video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+}
+
 .card-note label {
     font-size: 14px;
     color: #3c4043;
@@ -148,8 +168,9 @@
 
 .check-note {
     position: absolute;
-    top: 8px;
-    inset-inline-end: 10px;
+    top: -10px;
+    right: -4px;
+    /* inset-inline-end: 10px; */
     color: #d68b00;
     font-size: 14px;
 }
@@ -184,8 +205,9 @@ button,
     display: grid;
     place-content: center;
 
-    width: 32px;
-    height: 32px;
+
+    width: 42px;
+    /* height: 32px; */
     padding: 0;
 
     border: 0;
