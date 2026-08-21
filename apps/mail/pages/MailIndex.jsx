@@ -16,7 +16,7 @@ import { MailLeftSideBar } from "../cmps/MailLeftSideBar.jsx"
 
 export function MailIndex() {
   const [emails, setEmails] = useState(null)
-  const [isSentEmails, setIsSentEmails] = useState(null)
+  const [isSentEmails, setIsSentEmails] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams()
   const [filterBy, setFilterBy] = useState(emailsService.getDefaultFilter())
 
@@ -30,17 +30,21 @@ export function MailIndex() {
   }, [filterBy])
 
   function loadEmails() {
-    const emailsFromService = emailsService.query
-    emailsFromService(filterBy).then((emails) => {
-      console.log("emails from storage:", emails)
-
-      const emailsWithTo = emails.filter((mail) => mail.to)
-      if (emailsWithTo && isSentEmails) setEmails(emailsWithTo)
-      else {
-      }
-      const emailsWithFrom = emails.filter((mail) => mail.from)
-      if (emailsWithFrom && !isSentEmails) setEmails(emailsWithFrom)
+    emailsService.query(filterBy).then((emails) => {
+      setEmails(emails)
     })
+  }
+
+  let emailsToShow
+
+  if (emails) {
+    if (isSentEmails) {
+      emailsToShow = emails.filter((mail) => mail.to && mail.from === "me")
+    } else {
+      emailsToShow = emails.filter((mail) => mail.from)
+    }
+  } else {
+    emailsToShow = null
   }
 
   function onSentClicked(condition) {
@@ -102,7 +106,8 @@ export function MailIndex() {
       <MailRightSideBar />
 
       <MailList
-        emails={emails}
+        emails={emailsToShow}
+        isSentEmails = {isSentEmails}
         onRemoveMail={onRemoveMail}
         onToggleRead={onToggleRead}
       />

@@ -1,7 +1,7 @@
 const { Link, useNavigate } = ReactRouterDOM
 import { MailPreview } from "./MailPreview.jsx"
 
-export function MailList({ emails, onRemoveMail, onToggleRead }) {
+export function MailList({ emails, isSentEmails, onRemoveMail, onToggleRead }) {
   const navigate = useNavigate()
   return (
     <ul className="mail-list">
@@ -16,6 +16,7 @@ export function MailList({ emails, onRemoveMail, onToggleRead }) {
         >
           <MailPreview
             mail={mail}
+            isSentEmails={isSentEmails}
             onRemoveMail={onRemoveMail}
             onToggleRead={onToggleRead}
           />

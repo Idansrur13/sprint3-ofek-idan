@@ -33,7 +33,7 @@ export function MailLeftSideBar({ emails, onSentClicked }) {
           </button>
         </Link>
         <div className="inbox">
-          <button>Inbox</button>
+          <button  onClick={() => onSentClicked(false)}>Inbox</button>
         </div>
       </div>
       <button className="sent" onClick={() => onSentClicked(true)}>

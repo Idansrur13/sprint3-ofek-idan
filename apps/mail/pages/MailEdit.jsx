@@ -8,7 +8,7 @@ import {
 } from "../../../services/event-bus.service.js"
 
 export function MailEdit() {
-  const [mail, setmail] = useState(emailsService.getEmptyMail())
+  const [mail, setmail] = useState(emailsService.getEmptyMail("","me"))
   const [msg, setMsg] = useState(null)
 
   const params = useParams()
@@ -63,6 +63,16 @@ export function MailEdit() {
         id="to"
         name="to"
         value={mail.to}
+        onChange={handleChange}
+      />
+
+      <label htmlFor="from">from:</label>
+      <input
+        type="text"
+        placeholder="from"
+        id="from"
+        name="from"
+        value={mail.from}
         onChange={handleChange}
       />
 

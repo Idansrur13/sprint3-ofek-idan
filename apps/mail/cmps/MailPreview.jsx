@@ -2,7 +2,12 @@ const { useState } = React
 import { utilService } from "../../../services/util.service.js"
 import { icons } from "../services/mail.icons.js"
 
-export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
+export function MailPreview({
+  mail,
+  isSentEmails,
+  onRemoveMail,
+  onToggleRead,
+}) {
   const [onHover, setOnHover] = useState(false)
   const isRead = mail.isRead
   const IsReadIcon = isRead ? icons.readMail : icons.unreadMail
@@ -22,6 +27,36 @@ export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
     return utilService.getNumericDate(createdAt, "he-IL")
   }
 
+  let mailToFrom
+  if (isSentEmails) mailToFrom = `To: ${mail.to}`
+  else mailToFrom = mail.from
+  let mailActionsContent
+  if (onHover) {
+    mailActionsContent = (
+      <div className="btn-row-mail">
+        <span
+          className="btn-remove"
+          onClick={(ev) => {
+            onRemoveMail(mail.id)
+          }}
+        >
+          {icons.trash}
+        </span>
+        <span
+          onClick={() => {
+            onToggleRead(mail.id)
+          }}
+        >
+          {IsReadIcon}
+        </span>
+      </div>
+    )
+  } else {
+    mailActionsContent = (
+      <span className="send-time">{_getMailTimeLabel(mail.createdAt)}</span>
+    )
+  }
+
   return (
     <div
       className={` mail-row ${isRead ? "mail-read" : ""}  `}
@@ -33,7 +68,7 @@ export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
         <div className="icon-mail  hollow-star">{icons.star}</div>
         <div className="icon-mail important">{icons.important}</div>
       </div>
-      <span className="mail-sender"> {mail.from}</span>
+      <span className="mail-sender"> {mailToFrom}</span>
 
       <span className="mail-subject">{mail.subject}</span>
 
@@ -41,27 +76,7 @@ export function MailPreview({ mail, onRemoveMail, onToggleRead }) {
       <span className="mail-body">{mail.body}</span>
 
       <div className="mail-actions" onClick={(ev) => ev.stopPropagation()}>
-        {onHover ? (
-          <div className="btn-row-mail ">
-            <span
-              className="btn-remove"
-              onClick={(ev) => {
-                onRemoveMail(mail.id)
-              }}
-            >
-              {icons.trash}
-            </span>
-            <span
-              onClick={() => {
-                onToggleRead(mail.id)
-              }}
-            >
-              {IsReadIcon}
-            </span>
-          </div>
-        ) : (
-          <span className="send-time">{_getMailTimeLabel(mail.createdAt)}</span>
-        )}
+        {mailActionsContent}
       </div>
     </div>
   )
