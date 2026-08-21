@@ -42,7 +42,7 @@ export function MailIndex() {
     if (isSentEmails) {
       emailsToShow = emails.filter((mail) => mail.to && mail.from === "me")
     } else {
-      emailsToShow = emails.filter((mail) => mail.from)
+      emailsToShow = emails.filter((mail) => mail.from && mail.from !== "me")
       inboxShown = true
     }
   } else {
