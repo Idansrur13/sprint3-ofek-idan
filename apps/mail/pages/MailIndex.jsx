@@ -30,11 +30,12 @@ export function MailIndex() {
   }, [filterBy])
 
   function loadEmails() {
-    emailsService.query(filterBy).then((emails) => {
+    emailsService.query(filterBy, inboxShown).then((emails) => {
       setEmails(emails)
     })
   }
-
+  
+  let inboxShown
   let emailsToShow
 
   if (emails) {
@@ -42,6 +43,7 @@ export function MailIndex() {
       emailsToShow = emails.filter((mail) => mail.to && mail.from === "me")
     } else {
       emailsToShow = emails.filter((mail) => mail.from)
+      inboxShown = true
     }
   } else {
     emailsToShow = null
@@ -107,7 +109,7 @@ export function MailIndex() {
 
       <MailList
         emails={emailsToShow}
-        isSentEmails = {isSentEmails}
+        isSentEmails={isSentEmails}
         onRemoveMail={onRemoveMail}
         onToggleRead={onToggleRead}
       />

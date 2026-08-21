@@ -19,14 +19,16 @@ export const emailsService = {
 // For Debug  access from console):
 // window.cs = mailService
 
-function query(filterBy = {}) {
+function query(filterBy = {}, inboxShown) {
+  let toFrom
+
   return storageService.query(MAIL_KEY).then((mails) => {
     if (filterBy.txt) {
       const regExp = new RegExp(filterBy.txt, "i")
       mails = mails.filter(
         (mail) =>
-          regExp.test(mail.from) ||
           regExp.test(mail.subject) ||
+          regExp.test(inboxShown ? mail.from : mail.to) ||
           regExp.test(mail.body),
       )
     }
@@ -118,7 +120,20 @@ function _createMails() {
         words[utilService.getRandomIntInclusive(0, words.length - 1)]
       const body =
         sentences[utilService.getRandomIntInclusive(0, sentences.length - 1)]
-      mails.push(_createMail("", from, subject, body, Date.now(), "", false,false,"",""))
+      mails.push(
+        _createMail(
+          "",
+          from,
+          subject,
+          body,
+          Date.now(),
+          "",
+          false,
+          false,
+          "",
+          "",
+        ),
+      )
     }
     utilService.saveToStorage(MAIL_KEY, mails)
   }

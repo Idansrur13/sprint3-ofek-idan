@@ -20,18 +20,19 @@
     font-size: 1.5rem;
   }
 
-  .mail-filter {
+  .mail-filters {
     display: flex;
-    align-items: center;
-    position: relative;
-    max-width: 400px;
-    width: 100%;
-    padding: 8px 16px;
-    background-color: #f1f3f4;
-    border: 2px solid transparent;
-    border-radius: 24px; 
-
-  
-  
+    .mail-search {
+      display: flex;
+      align-items: center;
+      position: relative;
+      max-width: 400px;
+      width: 100%;
+      padding: 8px 16px;
+      margin-inline-end: 2rem;
+      background-color: #f1f3f4;
+      border: 2px solid transparent;
+      border-radius: 24px;
+    }
   }
 }

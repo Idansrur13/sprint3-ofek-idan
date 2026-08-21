@@ -19,21 +19,29 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
     }))
   }
 
-  function clearFilter() {
-    setFilterByToEdit(mailService.getDefaultFilter())
-  }
+
   return (
-    <div className="mail-filter">
-      <span className="search-icon">
-       {icons.search}
-      </span>
-      <input
-        onChange={(ev) => handleChange(ev)}
-        value={filterByToEdit.txt}
-        type="text"
-        name="txt"
-        placeholder="Search mail"
-      />
+    <div className="mail-filters">
+      <div className="mail-search">
+        <span className="search-icon">{icons.search}</span>
+        <input
+          onChange={(ev) => handleChange(ev)}
+          value={filterByToEdit.txt}
+          type="text"
+          name="txt"
+          placeholder="Search mail"
+        />
+      </div>
+
+      <label class="radio-label">
+        <input type="radio" name="example-group" checked />
+        <span>is unread</span>
+      </label>
+
+      <label class="radio-label">
+        <input type="radio" name="example-group" />
+        <span>is read</span>
+      </label>
     </div>
   )
 }
