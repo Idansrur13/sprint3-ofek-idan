@@ -3,8 +3,8 @@
   /* z-index: 0; */
 
   display: grid;
-  grid-template-columns: 1fr 80vw 1fr;
-  grid-template-rows: 3rem auto 1rem;
+  grid-template-columns: 100fr 90vw 1fr;
+  grid-template-rows: 3.5rem auto 1rem;
 
   grid-template-areas:
     "header header header"

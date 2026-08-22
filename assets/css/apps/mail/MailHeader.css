@@ -1,38 +1,65 @@
 .mail-header {
-  position: relative;
-  /* make position sticky or fixed!! */
   grid-area: header;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: subgrid;
+
+
+  .mail-brand {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+  }
+
   .mail-menu {
     margin-inline-start: 1rem;
     margin-inline-end: 20px;
   }
+
   .gmail {
     margin-inline-end: 100px;
+    grid-column: 1;
   }
 
   .profile-icons {
-    position: absolute;
-    right: 20px;
     display: flex;
     gap: 1rem;
     font-size: 1.5rem;
   }
+  /* .icon-profile {
+    background-color: rgb(0, 128, 122);
+    grid-column: 3;
+  } */
+
+  /* .main-mail-header {
+    grid-column: 2;
+  } */
 
   .mail-filters {
+    grid-column: 2;
+    flex-shrink: 1;
     display: flex;
-    .mail-search {
-      display: flex;
-      align-items: center;
-      position: relative;
-      max-width: 400px;
-      width: 100%;
-      padding: 8px 16px;
-      margin-inline-end: 2rem;
-      background-color: #f1f3f4;
-      border: 2px solid transparent;
-      border-radius: 24px;
+    align-items: center;
+    align-items: center;
+    gap: 2em;
+  }
+  .mail-search {
+    flex-shrink: 1;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.32);
+    border-radius: 24px;
+    padding: 0 20px;
+    height: 48px;
+    width: 40rem;
+    margin-top: 8px;
+    input {
+      border: none;
+      outline: none;
+      background: transparent;
     }
+  }
+
+  .read-unread-radios {
+    flex-shrink: 0;
   }
 }

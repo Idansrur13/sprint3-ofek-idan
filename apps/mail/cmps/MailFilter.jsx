@@ -19,7 +19,6 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
     }))
   }
 
-
   return (
     <div className="mail-filters">
       <div className="mail-search">
@@ -32,16 +31,17 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
           placeholder="Search mail"
         />
       </div>
+      <div className="read-unread-radios">
+        <label>
+          <input type="radio" name="example-group" checked />
+          <span>Is Unread</span>
+        </label>
 
-      <label class="radio-label">
-        <input type="radio" name="example-group" checked />
-        <span>is unread</span>
-      </label>
-
-      <label class="radio-label">
-        <input type="radio" name="example-group" />
-        <span>is read</span>
-      </label>
+        <label class="radio-label">
+          <input type="radio" name="example-group" />
+          <span>Is Read</span>
+        </label>
+      </div>
     </div>
   )
 }
