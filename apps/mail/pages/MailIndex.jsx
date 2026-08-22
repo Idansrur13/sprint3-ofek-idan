@@ -30,6 +30,7 @@ export function MailIndex() {
 
   function loadEmails() {
     emailsService.query(filterBy, inboxShown).then((emails) => {
+      console.log(emails)
       setEmails(emails)
     })
   }
@@ -55,7 +56,7 @@ export function MailIndex() {
 
   function onToggleRead(mailId, mailRead) {
     const mail = emails.find((mail) => mail.id === mailId)
-    const updatedMail = { ...mail, isRead: mailRead ? true : !mail.isRead }
+    const updatedMail = { ...mail, isRead: mailRead ? true : !mail.isRead } //false
 
     emailsService
       .save(updatedMail)
@@ -75,6 +76,19 @@ export function MailIndex() {
         showSuccessMsg(`mail ${mailId} removed`)
       })
       .catch((err) => showErrorMsg(`Couldn't remove ${mailId}`))
+  }
+
+  function onSaveMail(mailToSave) {
+    return emailsService.save(mailToSave).then((savedMail) => {
+      setEmails((prevEmails) => {
+        const idx = prevEmails.findIndex((mail) => mail.id === savedMail.id)
+        if (idx === -1) return [...prevEmails, savedMail]
+        const updatedEmails = [...prevEmails]
+        updatedEmails[idx] = savedMail
+        return updatedEmails
+      })
+      return savedMail
+    })
   }
 
   function onClearFilter() {
@@ -112,6 +126,7 @@ export function MailIndex() {
           isSentEmails,
           onRemoveMail,
           onToggleRead,
+          onSaveMail,
         }}
       >
         <Outlet />

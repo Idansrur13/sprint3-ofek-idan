@@ -61,8 +61,8 @@ function save(mail) {
 }
 
 function getEmptyMail(
-  to = "",
   from = "",
+  to = "",
   subject = "",
   body = "",
   createdAt = Date.now(),
@@ -73,8 +73,8 @@ function getEmptyMail(
   removedAt = "",
 ) {
   return {
-    to,
     from,
+    to,
     subject,
     body,
     createdAt,
@@ -122,8 +122,8 @@ function _createMails() {
         sentences[utilService.getRandomIntInclusive(0, sentences.length - 1)]
       mails.push(
         _createMail(
-          "",
           from,
+          "",
           subject,
           body,
           Date.now(),
@@ -140,8 +140,8 @@ function _createMails() {
 }
 
 function _createMail(
-  to,
   from,
+  to,
   subject,
   body,
   createdAt,
@@ -152,8 +152,8 @@ function _createMail(
   removedAt,
 ) {
   const mail = getEmptyMail(
-    to,
     from,
+    to,
     subject,
     body,
     createdAt,

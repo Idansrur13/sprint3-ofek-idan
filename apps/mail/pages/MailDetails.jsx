@@ -8,6 +8,7 @@ export function MailDetails() {
   console.log("mailDetails")
   const [mail, setMail] = useState(null)
   const params = useParams()
+  const { onToggleRead } = useMailContext()
 
   useEffect(() => {
     emailsService.get(params.id).then((mail) => {
@@ -15,15 +16,6 @@ export function MailDetails() {
       if (!mail.isRead) onToggleRead(mail.id, true)
     })
   }, [params.id])
-  // useEffect(() => {
-  //   emailsService.get(params.id).then((mail) => {
-  //     if (!mail.isRead) {
-  //       mail = { ...mail, isRead: true }
-  //       emailsService.save(mail)
-  //     }
-  //     setMail(mail)
-  //   })
-  // }, [params.id])
 
   console.log("mail is:", mail)
   if (!mail)

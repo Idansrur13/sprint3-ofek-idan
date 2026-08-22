@@ -6,13 +6,16 @@ import {
   eventBus,
   showSuccessMsg,
 } from "../../../services/event-bus.service.js"
+import { useMailContext } from "../context/MailContext.jsx"
 
 export function MailEdit() {
-  const [mail, setmail] = useState(emailsService.getEmptyMail("","me"))
+  const [mail, setmail] = useState(emailsService.getEmptyMail("me"))
   const [msg, setMsg] = useState(null)
 
   const params = useParams()
   const navigate = useNavigate()
+    const { onSaveMail } = useMailContext()
+
 
   useEffect(() => {
     if (params.id) {
@@ -25,17 +28,16 @@ export function MailEdit() {
     setmail((prev) => ({ ...prev, [name]: value }))
   }
 
-  function onSaveMail(ev) {
+  function onSubmitEmail(ev) {
     ev.preventDefault()
-
-    emailsService.save(mail).then((mail) => {
-      showSuccessMsg(`mail ${mail.id} saved`)
+    onSaveMail(mail).then((savedMail) => {
+      showSuccessMsg(`mail ${savedMail.id} saved`)
       navigate("/mail")
     })
   }
 
   return (
-    <form className="mail-edit" onSubmit={onSaveMail}>
+    <form className="mail-edit" onSubmit={onSubmitEmail}>
       <label htmlFor="subject">subject:</label>
       <input
         type="text"
