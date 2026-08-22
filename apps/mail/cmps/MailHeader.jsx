@@ -13,10 +13,8 @@ export function MailHeader({ filterBy, onSetFilterBy, onClearFilter }) {
       <div className="profile-icons">
         <span>{icons.support}</span>
         <span>{icons.settings}</span>
+        <span>{icons.Gemini}</span>
         <span>{icons.googleApps}</span>
-        <span>
-        {icons.Gemini}
-        </span>
         <span>{icons.profile}</span>
       </div>
     </section>

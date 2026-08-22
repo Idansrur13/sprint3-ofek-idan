@@ -2,6 +2,7 @@ const { useState, useEffect } = React
 const { Link, useParams } = ReactRouterDOM
 
 import { emailsService } from "../services/mail.service.js"
+import { useMailContext } from "../context/MailContext.jsx"
 
 export function MailDetails() {
   console.log("mailDetails")
@@ -10,13 +11,19 @@ export function MailDetails() {
 
   useEffect(() => {
     emailsService.get(params.id).then((mail) => {
-      if (!mail.isRead) {
-        mail = { ...mail, isRead: true }
-        emailsService.save(mail)
-      }
       setMail(mail)
+      if (!mail.isRead) onToggleRead(mail.id, true)
     })
   }, [params.id])
+  // useEffect(() => {
+  //   emailsService.get(params.id).then((mail) => {
+  //     if (!mail.isRead) {
+  //       mail = { ...mail, isRead: true }
+  //       emailsService.save(mail)
+  //     }
+  //     setMail(mail)
+  //   })
+  // }, [params.id])
 
   console.log("mail is:", mail)
   if (!mail)

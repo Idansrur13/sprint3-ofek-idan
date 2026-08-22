@@ -1,7 +1,6 @@
 const { useState, useEffect } = React
-const { Link, useSearchParams } = ReactRouterDOM
+const { Outlet, useSearchParams } = ReactRouterDOM
 import { demoEmails } from "../services/demoDataMail.jsx"
-import { MailList } from "../cmps/MailList.jsx"
 import { emailsService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailHeader } from "../cmps/MailHeader.jsx"
@@ -13,7 +12,7 @@ import { utilService } from "../../../services/util.service.js"
 import { useEffectUpdate } from "../custom-hooks/useEffectUpdate.js"
 import { MailRightSideBar } from "../cmps/MailRightSideBar.jsx"
 import { MailLeftSideBar } from "../cmps/MailLeftSideBar.jsx"
-
+import { MailContext } from "../context/MailContext.jsx"
 export function MailIndex() {
   const [emails, setEmails] = useState(null)
   const [isSentEmails, setIsSentEmails] = useState(false)
@@ -34,7 +33,7 @@ export function MailIndex() {
       setEmails(emails)
     })
   }
-  
+
   let inboxShown
   let emailsToShow
 
@@ -92,7 +91,7 @@ export function MailIndex() {
 
   return (
     <section className="mail-index">
-      <div style={{ position: "fixed", height: "100%", width: "100%" }}>
+      <div className="mail-bg">
         <img
           src="https://ssl.gstatic.com/ui/v1/icons/mail/themes/beach2/bg_sun_1680x1050.jpg"
           alt=""
@@ -107,12 +106,17 @@ export function MailIndex() {
       <MailLeftSideBar emails={emails} onSentClicked={onSentClicked} />
       <MailRightSideBar />
 
-      <MailList
-        emails={emailsToShow}
-        isSentEmails={isSentEmails}
-        onRemoveMail={onRemoveMail}
-        onToggleRead={onToggleRead}
-      />
+      <MailContext.Provider
+        value={{
+          emails: emailsToShow,
+          isSentEmails,
+          onRemoveMail,
+          onToggleRead,
+        }}
+      >
+        <Outlet />
+      </MailContext.Provider>
+
       <footer>foooter</footer>
     </section>
   )

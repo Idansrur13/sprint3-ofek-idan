@@ -1,5 +1,6 @@
 .mail-index {
   /* position: relative; */
+  /* z-index: 0; */
 
   display: grid;
   grid-template-columns: 1fr 80vw 1fr;
@@ -7,17 +8,27 @@
 
   grid-template-areas:
     "header header header"
-    "left main right"
+    "left main ."
     ". footer . ";
 
-  /* justify-content: stretch;
-  justify-items: stretch; */
+
+  .mail-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1; 
+    opacity: 0.95;
+  }
+
+  .mail-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   footer {
     grid-area: footer;
     display: flex;
     padding-block-end: 2em;
-    /* justify-content: stretch; */
     background-color: yellow;
 
   }

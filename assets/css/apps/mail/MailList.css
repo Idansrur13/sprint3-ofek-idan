@@ -1,3 +1,8 @@
+.mail-list,
+.mail-details,
+.mail-edit {
+  grid-area: main;
+}
 .mail-list {
   opacity: 0.85;
   grid-area: main;
@@ -26,6 +31,10 @@
     }
   }
 }
+/* .mail-details,
+.mail-edit {
+  grid-area: main;
+} */
 
 .mail-row {
   display: flex;
